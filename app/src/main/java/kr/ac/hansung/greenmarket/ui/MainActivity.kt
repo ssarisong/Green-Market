@@ -1,7 +1,8 @@
-package kr.ac.hansung.greenmarket
+package kr.ac.hansung.greenmarket.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kr.ac.hansung.greenmarket.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
