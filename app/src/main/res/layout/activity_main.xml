@@ -6,21 +6,9 @@
     android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
+    <include layout="@layout/top_menu" />
 
-    <RelativeLayout
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:background="#018340">
-
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:layout_centerInParent="true"
-            tools:srcCompat="@drawable/_0001"></ImageView>
-    </RelativeLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -30,8 +18,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="600dp"
+            android:layout_margin="20dp"
             android:orientation="vertical"
+            android:paddingTop="50dp"
             app:cardUseCompatPadding="true">
 
             <LinearLayout
@@ -40,7 +30,7 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingTop="10dp"
-                tools:layout_marginLeft="25dp">
+                tools:layout_marginLeft="15dp">
 
                 <TextView
                     android:layout_width="200dp"
@@ -49,10 +39,11 @@
                     android:gravity="center"
                     android:hint="Search" />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/filter"
                     android:layout_width="30dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/baseline_tune_24" />
 
@@ -70,7 +61,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="450dp"
+                android:layout_height="400dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
@@ -83,20 +74,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
                 <android.widget.Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/setting_button"
                     android:layout_gravity="center"
+                    android:background="@drawable/setting_button"
                     android:text="글쓰기"
                     android:textColor="@color/white"
                     android:textSize="12sp"></android.widget.Button>
-            </LinearLayout>
         </LinearLayout>
     </FrameLayout>
 
