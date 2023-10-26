@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="홈"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/chatting"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_dialog_email"
+        android:title="채팅"
+        app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/mypage"
+        android:enabled="true"
+        android:icon="@drawable/baseline_person_24"
+        android:title="마이페이지"
+        app:showAsAction="always" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내 텍스트 뷰" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/baseline_person_24" />
+
+</menu>

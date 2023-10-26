@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="30dp"
+    android:orientation="vertical"
+    android:paddingTop="100dp">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginBottom="30dp"
+        app:srcCompat="@mipmap/logo2_foreground"
+        tools:srcCompat="@mipmap/logo2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_id"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="이메일"
+            android:textSize="18sp"></TextView>
+
+        <EditText
+            android:id="@+id/editText_id"
+            android:layout_width="210dp"
+            android:layout_height="50dp"
+            android:background="@drawable/edittext_rectangle"
+            android:hint="Email"
+            android:paddingLeft="10dp"></EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_pw"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="비밀번호"
+            android:textSize="18sp"></TextView>
+
+        <EditText
+            android:id="@+id/editText_pw"
+            android:layout_width="210dp"
+            android:layout_height="50dp"
+            android:background="@drawable/edittext_rectangle"
+            android:hint="Password"
+            android:paddingLeft="10dp"></EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <android.widget.Button
+            android:id="@+id/button_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/setting_button"
+            android:text="로그인"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"></android.widget.Button>
+
+        <TextView
+            android:layout_width="5dp"
+            android:layout_height="match_parent"></TextView>
+
+        <android.widget.Button
+            android:id="@+id/button_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/setting_button"
+            android:text="회원가입"
+            android:textColor="@color/white"
+            android:textSize="12sp"></android.widget.Button>
+    </LinearLayout>
+
+</LinearLayout>
