@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:778179444022:android:5109b7c06a0439cc2d4797",
         "android_client_info": {
-          "package_name": "kr.ac.hansung.greenmarket.ui"
+          "package_name": "kr.ac.hansung.greenmarket"
         }
       },
       "oauth_client": [],

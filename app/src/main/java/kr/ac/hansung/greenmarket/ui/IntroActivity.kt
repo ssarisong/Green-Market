@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import kr.ac.hansung.greenmarket.R
 
 class IntroActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
