@@ -19,18 +19,6 @@ class FirebaseLoginUtils{
             }
     }
 
-    fun doSignup(userEmail: String, password: String, name: String, birth: String, callback: (String?) -> Unit){
-        Firebase.auth.createUserWithEmailAndPassword(userEmail, password)
-            .addOnCompleteListener{task ->
-                if(task.isSuccessful){
-                    callback(null)
-                }else{
-                    Log.w("LoginActivity", "signUpWithEmail", task.exception)
-                    callback(null)
-                }
-            }
-    }
-
 //    fun doSignup (userEmail: String, password: String, name: String, birth: String){
 //        val userEmail = findViewById<EditText>(R.id.editText_signup_id)?.text.toString()
 //        val password = findViewById<EditText>(R.id.editText_signup_pw)?.text.toString()
