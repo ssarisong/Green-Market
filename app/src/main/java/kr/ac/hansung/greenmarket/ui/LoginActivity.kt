@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import kr.ac.hansung.greenmarket.R
-import kr.ac.hansung.greenmarket.utils.FirebaseLoginUtils
+import kr.ac.hansung.greenmarket.utils.FirebaseLoginUtil
 
 
 class LoginActivity : Activity() {
@@ -17,7 +17,7 @@ class LoginActivity : Activity() {
         findViewById<Button>(R.id.button_login).setOnClickListener{
             val userEmail = findViewById<EditText>(R.id.editText_id)?.text.toString()
             val password = findViewById<EditText>(R.id.editText_pw)?.text.toString()
-            val loginUtil = FirebaseLoginUtils()
+            val loginUtil = FirebaseLoginUtil()
             loginUtil.doLogin(userEmail, password) { uid ->
                 if (uid != null) {
                     // 로그인 성공
