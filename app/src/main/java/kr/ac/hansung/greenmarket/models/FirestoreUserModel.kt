@@ -4,9 +4,19 @@ import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Log
 import kr.ac.hansung.greenmarket.StatusCode
 
+/**
+ * Firestore를 사용하여 사용자 데이터를 관리하는 모델 클래스입니다.
+ */
 class FirestoreUserModel {
     private val db = FirebaseFirestore.getInstance()
 
+    /**
+     * Firestore에 사용자를 추가합니다.
+     *
+     * @param uid 사용자의 고유 ID입니다.
+     * @param user 사용자 정보를 담고 있는 User 객체입니다.
+     * @param callback 상태 코드(STATUS_CODE)를 반환하는 콜백 함수입니다.
+     */
     fun insertUser(uid: String, user: User, callback: (Int) -> Unit) {
         db.collection("User").document(uid).set(user)
             .addOnSuccessListener {
@@ -19,6 +29,12 @@ class FirestoreUserModel {
             }
     }
 
+    /**
+     * Firestore에서 특정 사용자의 상세 정보를 조회합니다.
+     *
+     * @param uid 상세 정보를 조회할 사용자의 고유 ID입니다.
+     * @param callback 사용자 정보 조회 상태 코드(STATUS_CODE)와 User 객체를 반환하는 콜백 함수입니다.
+     */
     fun deleteUser(uid: String, callback: (Int) -> Unit) {
         db.collection("User").document(uid).delete()
             .addOnSuccessListener {
@@ -31,6 +47,12 @@ class FirestoreUserModel {
             }
     }
 
+    /**
+     * Firestore에서 특정 사용자의 상세 정보를 조회합니다.
+     *
+     * @param uid 상세 정보를 조회할 사용자의 고유 ID입니다.
+     * @param callback 사용자 정보 조회 상태 코드(STATUS_CODE)와 User 객체를 반환하는 콜백 함수입니다.
+     */
     fun getUserDetail(uid: String,  callback: (Int, User?) -> Unit) {
         db.collection("User").document(uid).get()
             .addOnSuccessListener { documentSnapshot ->

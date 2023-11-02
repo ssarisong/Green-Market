@@ -9,10 +9,21 @@ import kr.ac.hansung.greenmarket.models.User
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+/**
+ * Firebase 인증 관련 작업을 처리하는 유틸리티 클래스입니다.
+ * 로그인, 회원가입, 로그아웃, 사용자 정보 조회 기능을 제공합니다.
+ */
 class FirebaseUserUtil{
 
     private val userModel = FirestoreUserModel()
 
+    /**
+     * 이메일과 비밀번호를 사용하여 사용자 로그인을 수행합니다.
+     *
+     * @param userEmail 로그인할 사용자의 이메일입니다.
+     * @param password 로그인할 사용자의 비밀번호입니다.
+     * @param callback 로그인 성공 시 상태 코드(STATUS_CODE)와 사용자 ID를 인자로 받는 콜백 함수입니다.
+     */
     fun doSignIn(userEmail: String, password: String, callback: (Int, String?) -> Unit) {
         Firebase.auth.signInWithEmailAndPassword(userEmail, password)
             .addOnCompleteListener { task ->
@@ -27,6 +38,15 @@ class FirebaseUserUtil{
             }
     }
 
+    /**
+     * 이메일, 비밀번호, 이름, 생년월일을 사용하여 새로운 사용자를 등록합니다.
+     *
+     * @param userEmail 새로운 사용자의 이메일입니다.
+     * @param password 새로운 사용자를 위한 비밀번호입니다.
+     * @param name 새로운 사용자의 이름입니다.
+     * @param birth 새로운 사용자의 생년월일로 "yyyy-MM-dd" 형식입니다.
+     * @param callback 회원가입 성공 시 상태 코드(STATUS_CODE)와 사용자 ID를 인자로 받는 콜백 함수입니다.
+     */
     fun doSignUp(userEmail: String, password: String, name: String, birth: String, callback: (Int, String?) -> Unit){
         Firebase.auth.createUserWithEmailAndPassword(userEmail, password)
             .addOnCompleteListener{task ->
@@ -49,6 +69,11 @@ class FirebaseUserUtil{
             }
     }
 
+    /**
+     * 현재 로그인된 사용자를 로그아웃합니다.
+     *
+     * @param callback 로그아웃 결과를 나타내는 상태 코드(STATUS_CODE)를 인자로 받는 콜백 함수입니다.
+     */
     fun doSignOut(callback: (Int) -> Unit) {
         val uid = Firebase.auth.currentUser?.uid
         Firebase.auth.signOut()
@@ -61,6 +86,12 @@ class FirebaseUserUtil{
         }
     }
 
+    /**
+     * UID를 사용하여 사용자 객체를 검색합니다.
+     *
+     * @param uid 검색할 사용자의 UID입니다.
+     * @param callback 사용자 정보 조회 성공 시 상태 코드(STATUS_CODE)와 사용자 객체를 인자로 받는 콜백 함수입니다.
+     */
     fun getUser(uid: String, callback: (Int, User?) -> Unit) {
         userModel.getUserDetail(uid) { STATUS_CODE, user ->
             if (STATUS_CODE == StatusCode.SUCCESS) {
