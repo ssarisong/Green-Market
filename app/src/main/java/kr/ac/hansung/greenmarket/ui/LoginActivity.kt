@@ -6,7 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import kr.ac.hansung.greenmarket.R
-import kr.ac.hansung.greenmarket.utils.FirebaseLoginUtil
+import kr.ac.hansung.greenmarket.StatusCode
+import kr.ac.hansung.greenmarket.utils.FirebaseUserUtil
 
 
 class LoginActivity : Activity() {
@@ -14,12 +15,13 @@ class LoginActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val userUtil = FirebaseUserUtil()
+
         findViewById<Button>(R.id.button_login).setOnClickListener{
             val userEmail = findViewById<EditText>(R.id.editText_id)?.text.toString()
             val password = findViewById<EditText>(R.id.editText_pw)?.text.toString()
-            val loginUtil = FirebaseLoginUtil()
-            loginUtil.doLogin(userEmail, password) { uid ->
-                if (uid != null) {
+            userUtil.doSignIn(userEmail, password) { STATUS_CODE, uid ->
+                if (STATUS_CODE == StatusCode.SUCCESS) {
                     // 로그인 성공
                     startActivity(
                         Intent(this, MainActivity::class.java))
