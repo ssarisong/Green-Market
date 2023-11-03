@@ -30,7 +30,7 @@ class FirestoreUserModel {
     }
 
     /**
-     * Firestore에서 특정 사용자의 상세 정보를 조회합니다.
+     * Firestore에서 특정 사용자를 삭제합니다.
      *
      * @param uid 상세 정보를 조회할 사용자의 고유 ID입니다.
      * @param callback 사용자 정보 조회 상태 코드(STATUS_CODE)와 User 객체를 반환하는 콜백 함수입니다.

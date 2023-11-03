@@ -1,0 +1,43 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:kr.ac.hansung.greenmarket.models////PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/index.html
+$dokka.location:kr.ac.hansung.greenmarket.models/FirestoreUserModel///PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-user-model/index.html
+$dokka.location:kr.ac.hansung.greenmarket.models/FirestoreUserModel/FirestoreUserModel/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-user-model/-firestore-user-model.html
+$dokka.location:kr.ac.hansung.greenmarket.models/FirestoreUserModel/deleteUser/#kotlin.String#kotlin.Function1[kotlin.Int,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-user-model/delete-user.html
+$dokka.location:kr.ac.hansung.greenmarket.models/FirestoreUserModel/getUserDetail/#kotlin.String#kotlin.Function2[kotlin.Int,kr.ac.hansung.greenmarket.models.User?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-user-model/get-user-detail.html
+$dokka.location:kr.ac.hansung.greenmarket.models/FirestoreUserModel/insertUser/#kotlin.String#kr.ac.hansung.greenmarket.models.User#kotlin.Function1[kotlin.Int,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-user-model/insert-user.html
+$dokka.location:kr.ac.hansung.greenmarket.models/User///PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/index.html
+$dokka.location:kr.ac.hansung.greenmarket.models/User/BIRTHDAY/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/-b-i-r-t-h-d-a-y.html
+$dokka.location:kr.ac.hansung.greenmarket.models/User/EMAIL/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/-e-m-a-i-l.html
+$dokka.location:kr.ac.hansung.greenmarket.models/User/JOIN_DATE/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/-j-o-i-n_-d-a-t-e.html
+$dokka.location:kr.ac.hansung.greenmarket.models/User/NAME/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/-n-a-m-e.html
+$dokka.location:kr.ac.hansung.greenmarket.models/User/PASSWORD/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/-p-a-s-s-w-o-r-d.html
+$dokka.location:kr.ac.hansung.greenmarket.models/User/User/#kotlin.String#kotlin.String#kotlin.String#java.time.LocalDate#java.time.LocalDate/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/-user.html
+$dokka.location:kr.ac.hansung.greenmarket.ui////PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/index.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/IntroActivity///PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-intro-activity/index.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/IntroActivity/IntroActivity/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-intro-activity/-intro-activity.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/IntroActivity/onCreate/#[Error type: Unresolved type for Bundle]?/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-intro-activity/on-create.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/IntroActivity/onPause/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-intro-activity/on-pause.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/LoginActivity///PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-login-activity/index.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/LoginActivity/LoginActivity/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-login-activity/-login-activity.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/LoginActivity/onCreate/#[Error type: Unresolved type for Bundle]?/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-login-activity/on-create.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/MainActivity///PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-main-activity/index.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/MainActivity/MainActivity/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-main-activity/-main-activity.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/MainActivity/onCreate/#[Error type: Unresolved type for Bundle]?/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-main-activity/on-create.html
+$dokka.location:kr.ac.hansung.greenmarket.utils////PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/index.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil///PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-user-util/index.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil/FirebaseUserUtil/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-user-util/-firebase-user-util.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil/doSignIn/#kotlin.String#kotlin.String#kotlin.Function2[kotlin.Int,kotlin.String?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-user-util/do-sign-in.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil/doSignOut/#kotlin.Function1[kotlin.Int,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-user-util/do-sign-out.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil/doSignUp/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.Function2[kotlin.Int,kotlin.String?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-user-util/do-sign-up.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil/getUser/#kotlin.String#kotlin.Function2[kotlin.Int,[Error type: Unresolved type for User]?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[-frontend]-firebase-user-util/get-user.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil/getUser/#kotlin.String#kotlin.Function2[kotlin.Int,kr.ac.hansung.greenmarket.models.User?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-user-util/get-user.html
+$dokka.location:kr.ac.hansung.greenmarket////PointingToDeclaration/app/kr.ac.hansung.greenmarket/index.html
+$dokka.location:kr.ac.hansung.greenmarket/StatusCode///PointingToDeclaration/app/kr.ac.hansung.greenmarket/-status-code/index.html
+$dokka.location:kr.ac.hansung.greenmarket/StatusCode/FAILURE/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket/-status-code/-f-a-i-l-u-r-e.html
+$dokka.location:kr.ac.hansung.greenmarket/StatusCode/SUCCESS/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket/-status-code/-s-u-c-c-e-s-s.html
+kr.ac.hansung.greenmarket
+kr.ac.hansung.greenmarket.models
+kr.ac.hansung.greenmarket.ui
+kr.ac.hansung.greenmarket.utils
+
