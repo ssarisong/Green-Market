@@ -17,19 +17,26 @@ class LoginActivity : Activity() {
 
         val userUtil = FirebaseUserUtil()
 
-        findViewById<Button>(R.id.button_login).setOnClickListener{
+        findViewById<Button>(R.id.button_login).setOnClickListener {
             val userEmail = findViewById<EditText>(R.id.editText_id)?.text.toString()
             val password = findViewById<EditText>(R.id.editText_pw)?.text.toString()
             userUtil.doSignIn(userEmail, password) { STATUS_CODE, uid ->
                 if (STATUS_CODE == StatusCode.SUCCESS) {
                     // 로그인 성공
                     startActivity(
-                        Intent(this, MainActivity::class.java))
+                        Intent(this, MainActivity::class.java)
+                    )
                     finish()
                 } else {
                     // 로그인 실패
                 }
             }
+        }
+        findViewById<Button>(R.id.button_join).setOnClickListener {
+            // button_join 버튼이 클릭되면 activity_join으로 화면 전환
+            startActivity(
+                Intent(this, JoinActivity::class.java)
+            )
         }
     }
 }
