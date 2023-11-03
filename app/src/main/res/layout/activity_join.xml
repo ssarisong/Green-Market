@@ -60,6 +60,7 @@
                     android:textStyle="bold"></TextView>
 
                 <EditText
+                    android:id="@+id/editText_Email"
                     android:layout_width="210dp"
                     android:layout_height="50dp"
                     android:background="@drawable/edittext_rectangle"
@@ -83,6 +84,7 @@
                     android:textStyle="bold"></TextView>
 
                 <EditText
+                    android:id="@+id/editText_Pw"
                     android:layout_width="210dp"
                     android:layout_height="50dp"
                     android:background="@drawable/edittext_rectangle"
@@ -107,6 +109,7 @@
                     android:textStyle="bold"></TextView>
 
                 <EditText
+                    android:id="@+id/editText_Name"
                     android:layout_width="210dp"
                     android:layout_height="50dp"
                     android:background="@drawable/edittext_rectangle"
@@ -130,6 +133,7 @@
                     android:textStyle="bold"></TextView>
 
                 <EditText
+                    android:id="@+id/editText_Birthday"
                     android:layout_width="210dp"
                     android:layout_height="50dp"
                     android:background="@drawable/edittext_rectangle"
@@ -145,6 +149,7 @@
                 android:orientation="horizontal">
 
                 <android.widget.Button
+                    android:id="@+id/button_Join"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/setting_button"
@@ -157,6 +162,7 @@
                     android:layout_height="match_parent"></TextView>
 
                 <android.widget.Button
+                    android:id="@+id/button_Back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/setting_button"
