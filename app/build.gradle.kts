@@ -1,6 +1,13 @@
+import org.jetbrains.dokka.base.DokkaBase
+import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.dokka.base.DokkaBaseConfiguration
+import java.net.URL
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
+    id("org.jetbrains.dokka")
 }
 
 android {
@@ -35,6 +42,31 @@ android {
     }
 }
 
+buildscript {
+    dependencies {
+        classpath("org.jetbrains.dokka:dokka-base:1.9.10")
+    }
+}
+
+tasks.withType<DokkaTask>().configureEach {
+    outputDirectory.set(file("../docs/html"))
+    dokkaSourceSets {
+        register("FrontendSet"){
+            this.displayName.set("Frontend")
+            this.sourceRoots.from(file("src/main/java/kr/ac/hansung/greenmarket/utils"))
+            this.sourceRoots.from(file("src/main/java/kr/ac/hansung/greenmarket/ui"))
+        }
+        register("BackendSet"){
+            this.displayName.set("Backend")
+            this.sourceRoots.from(file("src/main/java/kr/ac/hansung/greenmarket/utils"))
+            this.sourceRoots.from(file("src/main/java/kr/ac/hansung/greenmarket/models"))
+        }
+    }
+    pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
+        footerMessage = "(c) 2023 Hansung University"
+    }
+}
+
 dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
@@ -44,4 +76,9 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    implementation(platform("com.google.firebase:firebase-bom:32.4.0"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
 }
