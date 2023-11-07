@@ -2,6 +2,7 @@ package kr.ac.hansung.greenmarket.utils
 
 import android.util.Log
 import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kr.ac.hansung.greenmarket.StatusCode
@@ -111,5 +112,9 @@ class FirebaseUserUtil{
                 callback(StatusCode.FAILURE, null)
             }
         }
+    }
+
+    fun whoAmI(): FirebaseUser? {
+        return Firebase.auth.currentUser
     }
 }
