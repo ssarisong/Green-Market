@@ -7,5 +7,5 @@ data class User(
     val PASSWORD: String,
     val NAME: String,
     val BIRTHDAY: Timestamp,
-    val JOIN_DATE: Timestamp,
+    val CREATED_AT: Timestamp,
 )
