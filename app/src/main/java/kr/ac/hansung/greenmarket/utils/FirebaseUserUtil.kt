@@ -56,7 +56,7 @@ class FirebaseUserUtil{
                     val currentUser = Firebase.auth.currentUser
                     val parser = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                     val birthDate = Timestamp(parser.parse(birth))
-                    val newUser = User(userEmail, password, name, birthDate, Timestamp.now())
+                    val newUser = User(userEmail, name, birthDate, Timestamp.now())
                     userModel.insertUser(uid, newUser) { STATUS_CODE ->
                         if (STATUS_CODE == StatusCode.SUCCESS) {
                             Log.d("FirebaseLoginUtils", "Auth에서 사용자 성공적으로 생성 -> ID: [${uid}]")
