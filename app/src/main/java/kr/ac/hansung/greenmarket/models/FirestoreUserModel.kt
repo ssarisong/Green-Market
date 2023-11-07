@@ -20,7 +20,7 @@ class FirestoreUserModel {
     fun insertUser(uid: String, user: User, callback: (Int) -> Unit) {
         db.collection("User").document(uid).set(user)
             .addOnSuccessListener {
-                Log.d("FirestoreUserModel", "${user.NAME}(${user.EMAIL}) 사용자 DB 정보 성공적으로 생성 -> ID: [${uid}]")
+                Log.d("FirestoreUserModel", "${user.name}(${user.email}) 사용자 DB 정보 성공적으로 생성 -> ID: [${uid}]")
                 callback(StatusCode.SUCCESS)
             }
             .addOnFailureListener { e ->

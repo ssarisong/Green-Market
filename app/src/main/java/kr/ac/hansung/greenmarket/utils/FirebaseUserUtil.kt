@@ -2,6 +2,7 @@ package kr.ac.hansung.greenmarket.utils
 
 import android.util.Log
 import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kr.ac.hansung.greenmarket.StatusCode
@@ -56,7 +57,7 @@ class FirebaseUserUtil{
                     val currentUser = Firebase.auth.currentUser
                     val parser = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                     val birthDate = Timestamp(parser.parse(birth))
-                    val newUser = User(userEmail, password, name, birthDate, Timestamp.now())
+                    val newUser = User(userEmail, name, birthDate, Timestamp.now())
                     userModel.insertUser(uid, newUser) { STATUS_CODE ->
                         if (STATUS_CODE == StatusCode.SUCCESS) {
                             Log.d("FirebaseLoginUtils", "Auth에서 사용자 성공적으로 생성 -> ID: [${uid}]")
@@ -111,5 +112,9 @@ class FirebaseUserUtil{
                 callback(StatusCode.FAILURE, null)
             }
         }
+    }
+
+    fun whoAmI(): FirebaseUser? {
+        return Firebase.auth.currentUser
     }
 }
