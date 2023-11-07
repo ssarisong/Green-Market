@@ -16,11 +16,16 @@ class JoinActivity : AppCompatActivity() {
 
         val userUtil = FirebaseUserUtil()
 
+        // 버튼 클릭 시 DatePickerActivity로 이동
+        findViewById<Button>(R.id.button_DatePicker).setOnClickListener {
+            startActivity(Intent(this, DatePickerActivity::class.java))
+        }
+
         findViewById<Button>(R.id.button_Join).setOnClickListener { // 회원가입 버튼
             val userEmail = findViewById<EditText>(R.id.editText_Email)?.text.toString()
             val password = findViewById<EditText>(R.id.editText_Pw)?.text.toString()
             val name = findViewById<EditText>(R.id.editText_Name)?.text.toString()
-            val birth = findViewById<EditText>(R.id.editText_Birthday)?.text.toString()
+            val birth = findViewById<Button>(R.id.button_DatePicker)?.text.toString()
 
             userUtil.doSignUp(userEmail, password, name, birth) { STATUS_CODE, uid ->
                 if (STATUS_CODE == StatusCode.SUCCESS) {

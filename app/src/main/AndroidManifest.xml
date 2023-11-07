@@ -24,6 +24,9 @@
         </activity>
         <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.JoinActivity" />
+        <activity android:name=".ui.MypageActivity" />
+        <activity android:name=".ui.ChattingActivity" />
+        <activity android:name=".ui.DatePickerActivity" />
 
     </application>
 </manifest>

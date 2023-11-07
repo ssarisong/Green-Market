@@ -88,12 +88,12 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_menu"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#018340"
         app:itemIconTint="#FFFFFF"
         app:itemTextColor="#f6d170"
         app:labelVisibilityMode="labeled"
-        app:menu="@layout/bottom_menu"/>
+        app:menu="@menu/bottom_menu"/>
 </RelativeLayout>
