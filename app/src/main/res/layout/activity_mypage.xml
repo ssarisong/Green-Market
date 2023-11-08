@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/header"
@@ -19,7 +18,7 @@
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:layout_centerInParent="true"
-            tools:srcCompat="@drawable/_0001"></ImageView>
+            android:src="@drawable/_0001"></ImageView>
     </RelativeLayout>
 
     <FrameLayout
@@ -29,6 +28,112 @@
         android:id="@+id/container">
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageButton
+                    android:id="@+id/btn_name"
+                    android:layout_width="10dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:contentDescription="사용자 프로필 이미지"
+                    tools:src="@android:drawable/ic_menu_gallery" />
+
+                <TextView
+                    android:id="@+id/text_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_weight="1"
+                    android:text="이름" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageButton
+                    android:id="@+id/btn_mypost"
+                    android:layout_width="10dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:contentDescription="."
+                    android:scaleType="fitXY"
+                    tools:src="?attr/actionModePasteDrawable" />
+
+                <TextView
+                    android:id="@+id/text_mypost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:text="내가 쓴 글" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageButton
+                    android:id="@+id/btn_myproduct"
+                    android:layout_width="10dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:contentDescription="."
+                    android:scaleType="fitXY"
+                    tools:src="@android:drawable/ic_menu_today" />
+
+                <TextView
+                    android:id="@+id/text_myproduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:text="내가 구매한 상품" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageButton
+                    android:id="@+id/btn_logout"
+                    android:layout_width="10dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:contentDescription="."
+                    android:scaleType="fitXY"
+                    tools:src="@android:drawable/ic_menu_close_clear_cancel"  />
+
+                <TextView
+                    android:id="@+id/text_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:text="로그아웃" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -40,5 +145,6 @@
         app:itemIconTint="#FFFFFF"
         app:itemTextColor="#f6d170"
         app:labelVisibilityMode="labeled"
-        app:menu="@layout/bottom_menu"/>
+        app:menu="@menu/bottom_menu"/>
+
 </RelativeLayout>

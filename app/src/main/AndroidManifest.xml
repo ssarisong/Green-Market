@@ -24,6 +24,12 @@
         </activity>
         <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.JoinActivity" />
-
+        <activity android:name=".ui.MypageActivity" />
+        <activity android:name=".ui.ChattingActivity" />
+        <activity android:name=".ui.DatePickerActivity" />
+        <activity android:name=".ui.HomeActivity" />
+        <activity android:name=".ui.HomeFragment" />
+        <activity android:name=".ui.ChattingFragment" />
+        <activity android:name=".ui.MypageFragment" />
     </application>
 </manifest>

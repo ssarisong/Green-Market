@@ -19,7 +19,7 @@
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:layout_centerInParent="true"
-            tools:srcCompat="@drawable/_0001"></ImageView>
+            android:src="@drawable/_0001"></ImageView>
     </RelativeLayout>
 
     <FrameLayout
@@ -30,10 +30,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="600dp"
             android:layout_margin="10dp"
+            android:layout_marginTop="200dp"
             android:orientation="vertical"
-            android:paddingTop="50dp">
+            android:paddingTop="80dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -92,7 +93,6 @@
                     android:paddingLeft="10dp"></EditText>
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -132,19 +132,30 @@
                     android:textSize="18sp"
                     android:textStyle="bold"></TextView>
 
-                <EditText
-                    android:id="@+id/editText_Birthday"
-                    android:layout_width="210dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/edittext_rectangle"
-                    android:hint="YYYY/MM/DD"
-                    android:paddingLeft="10dp"></EditText>
+                <android.widget.Button
+                    android:id="@+id/button_DatePicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="날짜 선택"></android.widget.Button>
+
+                <TextView
+                    android:id="@+id/selectedDateTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/button_DatePicker"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:text=""
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="50dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -170,18 +181,21 @@
                     android:textColor="@color/white"
                     android:textSize="12sp"></android.widget.Button>
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView_join_failed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_below="@id/button_Back"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textColor="#FF0000"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
         </LinearLayout>
 
     </FrameLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#018340"
-        app:itemIconTint="#FFFFFF"
-        app:itemTextColor="#f6d170"
-        app:labelVisibilityMode="labeled"
-        app:menu="@layout/bottom_menu"/>
 </RelativeLayout>

@@ -1,13 +1,15 @@
 package kr.ac.hansung.greenmarket.utils
 
 import android.util.Log
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kr.ac.hansung.greenmarket.StatusCode
 import kr.ac.hansung.greenmarket.models.FirestoreUserModel
 import kr.ac.hansung.greenmarket.models.User
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 /**
  * Firebase 인증 관련 작업을 처리하는 유틸리티 클래스입니다.
@@ -49,21 +51,31 @@ class FirebaseUserUtil{
      */
     fun doSignUp(userEmail: String, password: String, name: String, birth: String, callback: (Int, String?) -> Unit){
         Firebase.auth.createUserWithEmailAndPassword(userEmail, password)
-            .addOnCompleteListener{task ->
-                if(task.isSuccessful){
+            .addOnCompleteListener{additionTask ->
+                if(additionTask.isSuccessful){
                     val uid = Firebase.auth.currentUser?.uid.toString()
-                    val birthDate = LocalDate.parse(birth, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-                    val newUser = User(userEmail, password, name, birthDate, LocalDate.now())
+                    val currentUser = Firebase.auth.currentUser
+                    val parser = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                    val birthDate = Timestamp(parser.parse(birth))
+                    val newUser = User(userEmail, name, birthDate, Timestamp.now())
                     userModel.insertUser(uid, newUser) { STATUS_CODE ->
                         if (STATUS_CODE == StatusCode.SUCCESS) {
                             Log.d("FirebaseLoginUtils", "Auth에서 사용자 성공적으로 생성 -> ID: [${uid}]")
                             callback(StatusCode.SUCCESS, uid)
                         } else {
-                            callback(StatusCode.FAILURE, uid)
+                            currentUser?.delete()
+                                ?.addOnCompleteListener { deletionTask ->
+                                    if (deletionTask.isSuccessful) {
+                                        Log.d("FirebaseLoginUtils", "Auth 계정 삭제 성공 -> ID: [${uid}]")
+                                    } else {
+                                        Log.w("FirebaseLoginUtils", "Auth 계정 삭제 실패!! -> ", deletionTask.exception)
+                                    }
+                                }
+                            callback(StatusCode.FAILURE, null)
                         }
                     }
                 }else{
-                    Log.w("FirebaseLoginUtils", "Auth에서 사용자 생성 중 에러 발생!!! -> ", task.exception)
+                    Log.w("FirebaseLoginUtils", "Auth에서 사용자 생성 중 에러 발생!!! -> ", additionTask.exception)
                     callback(StatusCode.FAILURE, null)
                 }
             }
@@ -100,5 +112,9 @@ class FirebaseUserUtil{
                 callback(StatusCode.FAILURE, null)
             }
         }
+    }
+
+    fun whoAmI(): FirebaseUser? {
+        return Firebase.auth.currentUser
     }
 }

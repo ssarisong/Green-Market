@@ -1,11 +1,10 @@
 package kr.ac.hansung.greenmarket.models
 
-import java.time.LocalDate
+import com.google.firebase.Timestamp
 
 data class User(
-    val EMAIL: String,
-    val PASSWORD: String,
-    val NAME: String,
-    val BIRTHDAY: LocalDate,
-    val JOIN_DATE: LocalDate,
+    val email: String,
+    val name: String,
+    val birthday: Timestamp,
+    val createdAt: Timestamp,
 )
