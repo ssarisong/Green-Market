@@ -19,7 +19,7 @@
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:layout_centerInParent="true"
-            tools:srcCompat="@drawable/_0001"></ImageView>
+            android:src="@drawable/_0001"></ImageView>
     </RelativeLayout>
 
     <FrameLayout
@@ -89,8 +89,10 @@
                     android:layout_width="210dp"
                     android:layout_height="50dp"
                     android:background="@drawable/edittext_rectangle"
-                    android:hint="PW"
-                    android:paddingLeft="10dp"></EditText>
+                    android:hint="Password"
+                    android:paddingLeft="10dp"
+                    android:inputType="textPassword" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -181,6 +183,18 @@
                     android:textColor="@color/white"
                     android:textSize="12sp"></android.widget.Button>
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView_join_failed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_below="@id/button_Back"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textColor="#FF0000"
+                android:textSize="18sp"
+                android:visibility="gone" />
         </LinearLayout>
 
     </FrameLayout>
