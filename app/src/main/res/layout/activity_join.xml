@@ -30,7 +30,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="600dp"
             android:layout_margin="10dp"
             android:layout_marginTop="200dp"
             android:orientation="vertical"
@@ -89,10 +89,8 @@
                     android:layout_width="210dp"
                     android:layout_height="50dp"
                     android:background="@drawable/edittext_rectangle"
-                    android:hint="Password"
-                    android:paddingLeft="10dp"
-                    android:inputType="textPassword" />
-
+                    android:hint="PW"
+                    android:paddingLeft="10dp"></EditText>
             </LinearLayout>
 
             <LinearLayout
@@ -195,6 +193,7 @@
                 android:textColor="#FF0000"
                 android:textSize="18sp"
                 android:visibility="gone" />
+
         </LinearLayout>
 
     </FrameLayout>
