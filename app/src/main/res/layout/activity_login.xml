@@ -13,8 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_marginBottom="30dp"
-        app:srcCompat="@mipmap/logo2_foreground"
-        tools:srcCompat="@mipmap/logo2" />
+        android:src="@drawable/logo" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,7 +58,9 @@
             android:layout_height="50dp"
             android:background="@drawable/edittext_rectangle"
             android:hint="Password"
-            android:paddingLeft="10dp"></EditText>
+            android:paddingLeft="10dp"
+            android:inputType="textPassword" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -91,5 +92,16 @@
             android:textColor="@color/white"
             android:textSize="12sp"></android.widget.Button>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_login_failed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text=""
+        android:textColor="#FF0000"
+        android:textSize="18sp"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"/>
 
 </LinearLayout>

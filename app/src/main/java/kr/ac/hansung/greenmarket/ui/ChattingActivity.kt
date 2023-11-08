@@ -12,10 +12,10 @@ class ChattingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chatting)
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_menu)
-        bottomNav.setOnNavigationItemSelectedListener { item ->
+        bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, HomeActivity::class.java))
                     true
                 }
                 R.id.mypage -> {
