@@ -10,9 +10,20 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import kr.ac.hansung.greenmarket.StatusCode
 
+/**
+ * Firestore를 사용하여 채팅과 채팅방을 관리하는 모델 클래스입니다.
+ */
 class FirestoreChattingModel {
     private val db = FirebaseFirestore.getInstance()
 
+    /**
+     * --내부 사용 함수--
+     * 특정 사용자가 참여한 채팅방 목록을 가져옵니다.
+     *
+     * @param userId 사용자 ID.
+     * @param field 'sellerId' 또는 'buyerId' 중 하나를 나타내는 필드명.
+     * @return 채팅방과 해당 Firestore 문서 ID의 Pair 목록.
+     */
     private suspend fun getChatRoomsForUser(userId: String, field: String) = db.collection("ChatRoom")
         .whereEqualTo(field, userId)
         .get()
@@ -24,27 +35,38 @@ class FirestoreChattingModel {
             }
         }
 
+    /**
+     * 사용자가 구매자 또는 판매자인 모든 채팅방을 조회합니다.
+     *
+     * @param userId 사용자 ID.
+     * @return 채팅방 정보 요청 성공 시 상태 코드(StatusCode)와 채팅방 리스트를 인자로 받는 콜백 함수입니다.
+     */
     suspend fun getChatRooms(userId: String): Pair<Int, List<ChatRoom>?> = withContext(Dispatchers.IO) {
-        coroutineScope {
-            val sellerRoomsDeferred = async { getChatRoomsForUser(userId, "sellerId") }
-            val buyerRoomsDeferred = async { getChatRoomsForUser(userId, "buyerId") }
-            try {
-                val sellerRooms = sellerRoomsDeferred.await()
-                val buyerRooms = buyerRoomsDeferred.await()
-                val allRooms = sellerRooms + buyerRooms
+        val sellerRoomsDeferred = async { getChatRoomsForUser(userId, "sellerId") }
+        val buyerRoomsDeferred = async { getChatRoomsForUser(userId, "buyerId") }
+        try {
+            val sellerRooms = sellerRoomsDeferred.await()
+            val buyerRooms = buyerRoomsDeferred.await()
+            val allRooms = sellerRooms + buyerRooms
 
-                val distinctChatRooms = allRooms
-                    .distinctBy { it.second }
-                    .map { it.first }
+            val distinctChatRooms = allRooms
+                .distinctBy { it.second }
+                .map { it.first }
 
-                StatusCode.SUCCESS to distinctChatRooms
-            } catch (e: Exception) {
-                Log.w("FirestoreChattingModel", "채팅방 목록 가져오기 실패: ", e)
-                StatusCode.FAILURE to null
-            }
+            StatusCode.SUCCESS to distinctChatRooms
+        } catch (e: Exception) {
+            Log.w("firestoreChattingModel", "채팅방 목록 가져오기 실패, 사용자 ID: $userId, 오류: $e")
+            StatusCode.FAILURE to null
         }
     }
 
+    /**
+     * 특정 채팅방의 메시지를 실시간으로 감지합니다.
+     *
+     * @param chatRoomId 감지할 채팅방의 ID.
+     * @param callback 새 메시지 또는 오류 발생 시 상태 코드(StatusCode)와 메시지 내용을 인자로 받는 콜백 함수입니다.
+     * @return 리스너 등록을 해제하는 함수.
+     */
     fun listenForMessages(chatRoomId: String, callback: (Int, List<Chat>?) -> Unit): () -> Unit {
         val chatMessagesRef = db.collection("ChatRoom").document(chatRoomId).collection("messages")
         val query = chatMessagesRef.orderBy("createdAt", Query.Direction.ASCENDING)
@@ -65,6 +87,13 @@ class FirestoreChattingModel {
         return { registration.remove() }
     }
 
+    /**
+     * 특정 채팅방에 메시지를 보냅니다.
+     *
+     * @param chatRoomId 메시지를 보낼 채팅방의 ID.
+     * @param message 보낼 메시지 객체.
+     * @param callback 메시지 전송 성공 또는 실패 시 상태 코드(StatusCode)를 인자로 받는 콜백 함수입니다.
+     */
     fun sendMessage(chatRoomId: String, message: Chat, callback: (Int) -> Unit) {
         db.collection("ChatRoom").document(chatRoomId).collection("messages")
             .add(message)
