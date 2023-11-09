@@ -9,9 +9,11 @@ import kr.ac.hansung.greenmarket.R
 class ChattingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chatting)
+        setContentView(R.layout.activity_chatlist)
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_menu)
+        bottomNav.selectedItemId = R.id.chatting
+
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
