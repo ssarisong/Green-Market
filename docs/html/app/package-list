@@ -1,30 +1,78 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
 $dokka.location:kr.ac.hansung.greenmarket.models////PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/index.html
+$dokka.location:kr.ac.hansung.greenmarket.models/Chat///PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-chat/index.html
+$dokka.location:kr.ac.hansung.greenmarket.models/Chat/Chat/#kotlin.String#kotlin.String#kotlin.String#[Error type: Unresolved type for Timestamp]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[-backend]-chat/-chat.html
+$dokka.location:kr.ac.hansung.greenmarket.models/Chat/Chat/#kotlin.String#kotlin.String#kotlin.String#com.google.firebase.Timestamp/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-chat/-chat.html
+$dokka.location:kr.ac.hansung.greenmarket.models/Chat/chatroomId/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-chat/chatroom-id.html
+$dokka.location:kr.ac.hansung.greenmarket.models/Chat/createdAt/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-chat/created-at.html
+$dokka.location:kr.ac.hansung.greenmarket.models/Chat/message/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-chat/message.html
+$dokka.location:kr.ac.hansung.greenmarket.models/Chat/senderId/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-chat/sender-id.html
+$dokka.location:kr.ac.hansung.greenmarket.models/ChatRoom///PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-chat-room/index.html
+$dokka.location:kr.ac.hansung.greenmarket.models/ChatRoom/ChatRoom/#kotlin.String#kotlin.String#kotlin.String#[Error type: Unresolved type for Timestamp]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[-backend]-chat-room/-chat-room.html
+$dokka.location:kr.ac.hansung.greenmarket.models/ChatRoom/ChatRoom/#kotlin.String#kotlin.String#kotlin.String#com.google.firebase.Timestamp/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-chat-room/-chat-room.html
+$dokka.location:kr.ac.hansung.greenmarket.models/ChatRoom/buyerId/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-chat-room/buyer-id.html
+$dokka.location:kr.ac.hansung.greenmarket.models/ChatRoom/createdAt/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-chat-room/created-at.html
+$dokka.location:kr.ac.hansung.greenmarket.models/ChatRoom/productId/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-chat-room/product-id.html
+$dokka.location:kr.ac.hansung.greenmarket.models/ChatRoom/sellerId/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-chat-room/seller-id.html
+$dokka.location:kr.ac.hansung.greenmarket.models/FirestoreChattingModel///PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-chatting-model/index.html
+$dokka.location:kr.ac.hansung.greenmarket.models/FirestoreChattingModel/FirestoreChattingModel/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-chatting-model/-firestore-chatting-model.html
+$dokka.location:kr.ac.hansung.greenmarket.models/FirestoreChattingModel/getChatRooms/#kotlin.String/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-chatting-model/get-chat-rooms.html
+$dokka.location:kr.ac.hansung.greenmarket.models/FirestoreChattingModel/listenForMessages/#kotlin.String#kotlin.Function2[kotlin.Int,kotlin.collections.List[kr.ac.hansung.greenmarket.models.Chat]?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-chatting-model/listen-for-messages.html
+$dokka.location:kr.ac.hansung.greenmarket.models/FirestoreChattingModel/sendMessage/#kotlin.String#kr.ac.hansung.greenmarket.models.Chat#kotlin.Function1[kotlin.Int,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-chatting-model/send-message.html
 $dokka.location:kr.ac.hansung.greenmarket.models/FirestoreUserModel///PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-user-model/index.html
 $dokka.location:kr.ac.hansung.greenmarket.models/FirestoreUserModel/FirestoreUserModel/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-user-model/-firestore-user-model.html
 $dokka.location:kr.ac.hansung.greenmarket.models/FirestoreUserModel/deleteUser/#kotlin.String#kotlin.Function1[kotlin.Int,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-user-model/delete-user.html
 $dokka.location:kr.ac.hansung.greenmarket.models/FirestoreUserModel/getUserDetail/#kotlin.String#kotlin.Function2[kotlin.Int,kr.ac.hansung.greenmarket.models.User?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-user-model/get-user-detail.html
 $dokka.location:kr.ac.hansung.greenmarket.models/FirestoreUserModel/insertUser/#kotlin.String#kr.ac.hansung.greenmarket.models.User#kotlin.Function1[kotlin.Int,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-firestore-user-model/insert-user.html
 $dokka.location:kr.ac.hansung.greenmarket.models/User///PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/index.html
-$dokka.location:kr.ac.hansung.greenmarket.models/User/BIRTHDAY/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/-b-i-r-t-h-d-a-y.html
-$dokka.location:kr.ac.hansung.greenmarket.models/User/EMAIL/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/-e-m-a-i-l.html
-$dokka.location:kr.ac.hansung.greenmarket.models/User/JOIN_DATE/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/-j-o-i-n_-d-a-t-e.html
-$dokka.location:kr.ac.hansung.greenmarket.models/User/NAME/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/-n-a-m-e.html
-$dokka.location:kr.ac.hansung.greenmarket.models/User/PASSWORD/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/-p-a-s-s-w-o-r-d.html
-$dokka.location:kr.ac.hansung.greenmarket.models/User/User/#kotlin.String#kotlin.String#kotlin.String#java.time.LocalDate#java.time.LocalDate/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/-user.html
+$dokka.location:kr.ac.hansung.greenmarket.models/User/User/#kotlin.String#kotlin.String#[Error type: Unresolved type for Timestamp]#[Error type: Unresolved type for Timestamp]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[-backend]-user/-user.html
+$dokka.location:kr.ac.hansung.greenmarket.models/User/User/#kotlin.String#kotlin.String#com.google.firebase.Timestamp#com.google.firebase.Timestamp/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/-user.html
+$dokka.location:kr.ac.hansung.greenmarket.models/User/birthday/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/birthday.html
+$dokka.location:kr.ac.hansung.greenmarket.models/User/createdAt/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/created-at.html
+$dokka.location:kr.ac.hansung.greenmarket.models/User/email/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/email.html
+$dokka.location:kr.ac.hansung.greenmarket.models/User/name/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.models/[android-jvm]-user/name.html
 $dokka.location:kr.ac.hansung.greenmarket.ui////PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/index.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/ChattingActivity///PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-chatting-activity/index.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/ChattingActivity/ChattingActivity/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-chatting-activity/-chatting-activity.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/ChattingActivity/onCreate/#[Error type: Unresolved type for Bundle]?/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-chatting-activity/on-create.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/DatePickerActivity///PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-date-picker-activity/index.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/DatePickerActivity/DatePickerActivity/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-date-picker-activity/-date-picker-activity.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/DatePickerActivity/onCreate/#[Error type: Unresolved type for Bundle]?/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-date-picker-activity/on-create.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/HomeActivity///PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-home-activity/index.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/HomeActivity/HomeActivity/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-home-activity/-home-activity.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/HomeActivity/onCreate/#[Error type: Unresolved type for Bundle]?/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-home-activity/on-create.html
 $dokka.location:kr.ac.hansung.greenmarket.ui/IntroActivity///PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-intro-activity/index.html
 $dokka.location:kr.ac.hansung.greenmarket.ui/IntroActivity/IntroActivity/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-intro-activity/-intro-activity.html
 $dokka.location:kr.ac.hansung.greenmarket.ui/IntroActivity/onCreate/#[Error type: Unresolved type for Bundle]?/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-intro-activity/on-create.html
 $dokka.location:kr.ac.hansung.greenmarket.ui/IntroActivity/onPause/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-intro-activity/on-pause.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/JoinActivity///PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-join-activity/index.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/JoinActivity/JoinActivity/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-join-activity/-join-activity.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/JoinActivity/onCreate/#[Error type: Unresolved type for Bundle]?/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-join-activity/on-create.html
 $dokka.location:kr.ac.hansung.greenmarket.ui/LoginActivity///PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-login-activity/index.html
 $dokka.location:kr.ac.hansung.greenmarket.ui/LoginActivity/LoginActivity/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-login-activity/-login-activity.html
 $dokka.location:kr.ac.hansung.greenmarket.ui/LoginActivity/onCreate/#[Error type: Unresolved type for Bundle]?/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-login-activity/on-create.html
 $dokka.location:kr.ac.hansung.greenmarket.ui/MainActivity///PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-main-activity/index.html
 $dokka.location:kr.ac.hansung.greenmarket.ui/MainActivity/MainActivity/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-main-activity/-main-activity.html
 $dokka.location:kr.ac.hansung.greenmarket.ui/MainActivity/onCreate/#[Error type: Unresolved type for Bundle]?/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-main-activity/on-create.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/MypageActivity///PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-mypage-activity/index.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/MypageActivity/MypageActivity/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-mypage-activity/-mypage-activity.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/MypageActivity/onCreate/#[Error type: Unresolved type for Bundle]?/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-mypage-activity/on-create.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/NewPostActivity///PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-new-post-activity/index.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/NewPostActivity/NewPostActivity/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-new-post-activity/-new-post-activity.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/NewPostActivity/onCreate/#[Error type: Unresolved type for Bundle]?/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-new-post-activity/on-create.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/RePostActivity///PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-re-post-activity/index.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/RePostActivity/RePostActivity/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[android-jvm]-re-post-activity/-re-post-activity.html
+$dokka.location:kr.ac.hansung.greenmarket.ui/RePostActivity/onCreate/#[Error type: Unresolved type for Bundle]?/PointingToDeclaration/app/kr.ac.hansung.greenmarket.ui/[-frontend]-re-post-activity/on-create.html
 $dokka.location:kr.ac.hansung.greenmarket.utils////PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/index.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseChattingUtil///PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-chatting-util/index.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseChattingUtil/FirebaseChattingUtil/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-chatting-util/-firebase-chatting-util.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseChattingUtil/createChatRoom/#kotlin.String#kotlin.Function2[kotlin.Int,kotlin.String?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-chatting-util/create-chat-room.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseChattingUtil/getUserChatRooms/#kotlin.String#kotlin.Function2[kotlin.Int,kotlin.collections.List[[Error type: Unresolved type for ChatRoom]]?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[-frontend]-firebase-chatting-util/get-user-chat-rooms.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseChattingUtil/getUserChatRooms/#kotlin.String#kotlin.Function2[kotlin.Int,kotlin.collections.List[kr.ac.hansung.greenmarket.models.ChatRoom]?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-chatting-util/get-user-chat-rooms.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseChattingUtil/listenForMessages/#kotlin.String#kotlin.Function2[kotlin.Int,kotlin.collections.List[[Error type: Unresolved type for Chat]]?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[-frontend]-firebase-chatting-util/listen-for-messages.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseChattingUtil/listenForMessages/#kotlin.String#kotlin.Function2[kotlin.Int,kotlin.collections.List[kr.ac.hansung.greenmarket.models.Chat]?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-chatting-util/listen-for-messages.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseChattingUtil/sendMessage/#kotlin.String#kotlin.String#kotlin.String#kotlin.Function1[kotlin.Int,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-chatting-util/send-message.html
 $dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil///PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-user-util/index.html
 $dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil/FirebaseUserUtil/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-user-util/-firebase-user-util.html
 $dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil/doSignIn/#kotlin.String#kotlin.String#kotlin.Function2[kotlin.Int,kotlin.String?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-user-util/do-sign-in.html
@@ -32,6 +80,7 @@ $dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil/doSignOut/#kotl
 $dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil/doSignUp/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.Function2[kotlin.Int,kotlin.String?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-user-util/do-sign-up.html
 $dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil/getUser/#kotlin.String#kotlin.Function2[kotlin.Int,[Error type: Unresolved type for User]?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[-frontend]-firebase-user-util/get-user.html
 $dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil/getUser/#kotlin.String#kotlin.Function2[kotlin.Int,kr.ac.hansung.greenmarket.models.User?,kotlin.Unit]/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-user-util/get-user.html
+$dokka.location:kr.ac.hansung.greenmarket.utils/FirebaseUserUtil/whoAmI/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket.utils/[android-jvm]-firebase-user-util/who-am-i.html
 $dokka.location:kr.ac.hansung.greenmarket////PointingToDeclaration/app/kr.ac.hansung.greenmarket/index.html
 $dokka.location:kr.ac.hansung.greenmarket/StatusCode///PointingToDeclaration/app/kr.ac.hansung.greenmarket/-status-code/index.html
 $dokka.location:kr.ac.hansung.greenmarket/StatusCode/FAILURE/#/PointingToDeclaration/app/kr.ac.hansung.greenmarket/-status-code/-f-a-i-l-u-r-e.html
