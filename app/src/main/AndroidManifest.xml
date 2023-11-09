@@ -28,8 +28,8 @@
         <activity android:name=".ui.ChattingActivity" />
         <activity android:name=".ui.DatePickerActivity" />
         <activity android:name=".ui.HomeActivity" />
-        <activity android:name=".ui.HomeFragment" />
-        <activity android:name=".ui.ChattingFragment" />
-        <activity android:name=".ui.MypageFragment" />
+
+        <activity android:name=".ui.ChatActivity"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 </manifest>
