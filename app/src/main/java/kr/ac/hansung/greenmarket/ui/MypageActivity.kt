@@ -15,6 +15,8 @@ class MypageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_mypage)
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_menu)
+        bottomNav.selectedItemId = R.id.mypage
+
         bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
