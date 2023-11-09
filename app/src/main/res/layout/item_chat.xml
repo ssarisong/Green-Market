@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="방이름"
+            android:text="username"
             android:textColor="#000000" />
         <TextView
             android:id="@+id/item_chat_tv_comment"

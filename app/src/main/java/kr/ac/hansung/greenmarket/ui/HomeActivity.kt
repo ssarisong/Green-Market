@@ -25,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.chatting -> {
                     // "채팅" 메뉴를 클릭한 경우, 채팅 화면으로 이동
-                    startActivity(Intent(this, ChattingActivity::class.java))
+                    startActivity(Intent(this, ChatlistActivity::class.java))
                     true
                 }
                 R.id.mypage -> {
