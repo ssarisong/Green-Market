@@ -56,7 +56,7 @@ class JoinActivity : AppCompatActivity() {
             val userEmail = findViewById<EditText>(R.id.editText_Email)?.text.toString()
             val password = findViewById<EditText>(R.id.editText_Pw)?.text.toString()
             val name = findViewById<EditText>(R.id.editText_Name)?.text.toString()
-            val birth = findViewById<Button>(R.id.button_DatePicker)?.text.toString()
+            val birth = findViewById<TextView>(R.id.selectedDateTextView)?.text.toString()
 
             if (userEmail.isEmpty()) {
                 findViewById<TextView>(R.id.textView_join_failed).text = "이메일을 입력하세요"

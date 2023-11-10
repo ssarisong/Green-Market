@@ -25,7 +25,7 @@ class FirebaseChattingUtil {
      * @param callback 채팅방 생성 성공 시 상태 코드(StatusCode)와 채팅방 리스트를 인자로 받는 콜백 함수입니다.
      */
     fun createChatRoom(productId: String, buyerId: String, sellerId: String, callback: (Int, String?) -> Unit) {
-        val newChatRoom = ChatRoom(productId = productId, buyerId = buyerId, sellerId = sellerId, createdAt = Timestamp.now())
+        val newChatRoom = ChatRoom(chatRoomId = "", productId = productId, buyerId = buyerId, sellerId = sellerId, createdAt = Timestamp.now())
 
         chattingModel.createChatRoom(newChatRoom) { status, chatRoomId ->
             if (status == StatusCode.SUCCESS) {

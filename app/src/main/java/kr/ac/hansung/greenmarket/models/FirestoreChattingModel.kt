@@ -122,7 +122,10 @@ class FirestoreChattingModel {
     fun createChatRoom(chatRoom: ChatRoom, callback: (Int, String) -> Unit) {
         val newChatRoomRef = db.collection("ChatRoom").document()
 
-        newChatRoomRef.set(chatRoom)
+        val updatedChatRoom = chatRoom.copy(chatRoomId = newChatRoomRef.id)
+
+        // 수정된 채팅방 정보 Firestore에 저장
+        newChatRoomRef.set(updatedChatRoom)
             .addOnSuccessListener {
                 Log.d("FirestoreChattingModel", "채팅방 정보 성공적으로 생성 -> ID: [${newChatRoomRef.id}]")
                 callback(StatusCode.SUCCESS, newChatRoomRef.id)
