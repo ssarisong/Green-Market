@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp">
+
+    <TextView
+        android:id="@+id/txt_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:background="@drawable/background_message1"
+        android:gravity="start|center_vertical"
+        android:linksClickable="true"
+        android:padding="10dp"
+        android:text="안녕하세요."
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text="오전 10:23"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_message"
+        app:layout_constraintEnd_toStartOf="@+id/txt_message"
+        app:layout_constraintTop_toTopOf="@+id/txt_message"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <TextView
+        android:id="@+id/txt_isShown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="1"
+        android:textColor="#FFBE3C"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_date"
+        app:layout_constraintEnd_toStartOf="@+id/txt_date"
+        app:layout_constraintTop_toTopOf="@+id/txt_date" />
+</androidx.constraintlayout.widget.ConstraintLayout>
