@@ -54,24 +54,24 @@ class FirestoreProductModel {
     /**
      * Firestore에서 특정 상품의 상세 정보를 조회합니다.
      *
-     * @param pid 상세 정보를 조회할 사용자의 고유 ID입니다.
+     * @param productNm 상세 정보를 조회할 상품의 이름입니다.
      * @param callback 사용자 정보 조회 상태 코드(STATUS_CODE)와 User 객체를 반환하는 콜백 함수입니다.
      */
 
-    fun getProductModel(pid: String, callback:(Int, Product?) -> Unit){
-        db.collection("Product").document(pid).get()
+    fun getProductModel(productNm: String, callback:(Int, Product?) -> Unit){
+        db.collection("Product").document(productNm).get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot != null && documentSnapshot.exists()){
-                    Log.d("FirestoreProductModel", "ID: [${pid}] 상품 DB에 블러오기 성공")
+                    Log.d("FirestoreProductModel", "ID: [${productNm}] 상품 DB에 블러오기 성공")
                     val product = documentSnapshot.toObject(Product::class.java)
                     callback(StatusCode.SUCCESS, product)
                 }else{
-                    Log.d("FirestoreProductModel", "ID: [${pid}] 상품이 DB에 존재하지 않음")
+                    Log.d("FirestoreProductModel", "ID: [${productNm}] 상품이 DB에 존재하지 않음")
                     callback(StatusCode.FAILURE, null)
                 }
             }
             .addOnFailureListener{e ->
-                Log.w("FirestoreProductModel", "ID: [${pid}] 상품을 DB에서 불러오는 중 에러 발생!!! -> ", e)
+                Log.w("FirestoreProductModel", "ID: [${productNm}] 상품을 DB에서 불러오는 중 에러 발생!!! -> ", e)
                 callback(StatusCode.FAILURE, null)
             }
     }
