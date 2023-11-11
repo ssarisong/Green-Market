@@ -48,4 +48,33 @@ class FirebaseProductUtil {
         val rM = UUID.randomUUID().mostSignificantBits and Long.MAX_VALUE
         return rM
     }
+
+    /**
+     * productNm 사용하여 상품 객체들을 검색합니다.
+     *
+     * @param productNm 검색할 상품의 이름입니다.
+     * @param callback 상품 정보 조회 성공 시 상태 코드(STATUS_CODE)와 상품 객체를 인자로 받는 콜백 함수입니다.
+     */
+
+    fun getProduct(productNm: String, callback: (Int, List<Product>?) -> Unit){
+        val productList = mutableListOf<Product>()
+
+        productModel.getProductModel(productNm){ STATUS_CODE, product ->
+            when(STATUS_CODE){
+                StatusCode.SUCCESS -> {
+                    if(product != null){
+                        productList.add(product)
+                        callback(StatusCode.SUCCESS, productList)
+                    }else{
+                        Log.e("FirebaseProductUtils", "productNm == null")
+                        callback(StatusCode.FAILURE, null)
+                    }
+                }else->{
+                    Log.e("FirebaseProductUtils", "상품 이름으로 검색 중 에러 발생!!!")
+                }
+            }
+        }
+    }
+
+
 }
