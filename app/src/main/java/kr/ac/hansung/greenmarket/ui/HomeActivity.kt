@@ -57,7 +57,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun showFilterDialog() {
         val items = arrayOf(
-            "의류", "잡화", "디지털기기", "도서", "상품권", "주방", "스포츠", "가전제품", "가구"
+            "판매중", "예약중", "판매 완료"
         )
 
         val checkedItems = BooleanArray(items.size)
@@ -76,7 +76,7 @@ class HomeActivity : AppCompatActivity() {
                 }
                 Toast.makeText(
                     this,
-                    "${selectedFilters.joinToString(", ")}만 표시됩니다.",
+                    "${selectedFilters.joinToString(", ")} 상품만 표시됩니다.",
                     Toast.LENGTH_SHORT
                 ).show()
 
