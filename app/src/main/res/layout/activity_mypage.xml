@@ -41,9 +41,8 @@
 
                 <ImageButton
                     android:id="@+id/btn_name"
-                    android:layout_width="10dp"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_weight="1"
                     android:scaleType="fitXY"
                     android:contentDescription="사용자 프로필 이미지"
                     tools:src="@android:drawable/ic_menu_gallery" />
@@ -53,8 +52,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
-                    android:layout_weight="1"
-                    android:text="이름" />
+                    android:text="이름"
+                    android:layout_marginStart="10dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -65,9 +64,8 @@
 
                 <ImageButton
                     android:id="@+id/btn_mypost"
-                    android:layout_width="10dp"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_weight="1"
                     android:contentDescription="."
                     android:scaleType="fitXY"
                     tools:src="?attr/actionModePasteDrawable" />
@@ -76,9 +74,9 @@
                     android:id="@+id/text_mypost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:textSize="20dp"
-                    android:text="내가 쓴 글" />
+                    android:text="내가 쓴 글"
+                    android:layout_marginStart="10dp"/>
 
             </LinearLayout>
 
@@ -90,9 +88,8 @@
 
                 <ImageButton
                     android:id="@+id/btn_myproduct"
-                    android:layout_width="10dp"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_weight="1"
                     android:contentDescription="."
                     android:scaleType="fitXY"
                     tools:src="@android:drawable/ic_menu_today" />
@@ -101,9 +98,9 @@
                     android:id="@+id/text_myproduct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:textSize="20dp"
-                    android:text="내가 구매한 상품" />
+                    android:text="내가 구매한 상품"
+                    android:layout_marginStart="10dp"/>
 
             </LinearLayout>
 
@@ -115,9 +112,8 @@
 
                 <ImageButton
                     android:id="@+id/btn_logout"
-                    android:layout_width="10dp"
+                    android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_weight="1"
                     android:contentDescription="."
                     android:scaleType="fitXY"
                     tools:src="@android:drawable/ic_menu_close_clear_cancel"  />
@@ -126,9 +122,9 @@
                     android:id="@+id/text_logout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:textSize="20dp"
-                    android:text="로그아웃" />
+                    android:text="로그아웃"
+                    android:layout_marginStart="10dp"/>
 
             </LinearLayout>
 

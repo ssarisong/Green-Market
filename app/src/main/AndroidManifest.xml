@@ -28,8 +28,8 @@
         <activity android:name=".ui.ChatlistActivity" />
         <activity android:name=".ui.DatePickerActivity" />
         <activity android:name=".ui.HomeActivity" />
-
         <activity android:name=".ui.ChatActivity"
             android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.NewPostActivity" />
     </application>
 </manifest>

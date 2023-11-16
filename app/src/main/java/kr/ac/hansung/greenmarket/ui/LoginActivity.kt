@@ -20,13 +20,6 @@ class LoginActivity : Activity() {
 
         val userUtil = FirebaseUserUtil()
 
-        // 현재 데이터베이스가 없기때문에 main으로 들어가기 위해 로그인버튼 클릭 시 바로 홈화면으로 이동.
-        findViewById<Button>(R.id.button_login).setOnClickListener {
-            startActivity(
-                Intent(this, HomeActivity::class.java)
-            )
-        }
-        /*
         findViewById<Button>(R.id.button_login).setOnClickListener {
             val userEmail = findViewById<EditText>(R.id.editText_id)?.text.toString()
             val password = findViewById<EditText>(R.id.editText_pw)?.text.toString()
@@ -46,7 +39,7 @@ class LoginActivity : Activity() {
                     if (STATUS_CODE == StatusCode.SUCCESS) {
                         // 로그인 성공
                         startActivity(
-                            Intent(this, MainActivity::class.java)
+                            Intent(this, HomeActivity::class.java)
                         )
                         finish()
                     } else {
@@ -55,19 +48,8 @@ class LoginActivity : Activity() {
                     }
                 }
             }
-//            userUtil.doSignIn(userEmail, password) { STATUS_CODE, uid ->
-//                if (STATUS_CODE == StatusCode.SUCCESS) {
-//                    // 로그인 성공
-//                    startActivity(
-//                        Intent(this, MainActivity::class.java)
-//                    )
-//                    finish()
-//                } else {
-//                    // 로그인 실패
-//                    findViewById<TextView>(R.id.textView_login_failed).visibility = View.VISIBLE
-//                }
-//            }
-        }*/
+
+        }
         findViewById<Button>(R.id.button_join).setOnClickListener {
             // button_join 버튼이 클릭되면 activity_join으로 화면 전환
             startActivity(
