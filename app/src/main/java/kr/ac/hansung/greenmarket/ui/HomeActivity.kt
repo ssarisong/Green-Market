@@ -7,6 +7,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -20,8 +21,8 @@ class HomeActivity : AppCompatActivity() {
 
         // Sample data for testing
         val productList = listOf(
-            Product("Product 1", "$10", "Description 1", 10, 1),
-            Product("Product 2", "$20", "Description 2", 20, 2),
+            Product("Product 1", "img1", "Description 1", 10000, 1),
+            Product("Product 2", "img2", "Description 2", 20000, 2),
             // Add more products as needed
         )
 
@@ -31,7 +32,8 @@ class HomeActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
         // Set up the RecyclerView with the adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val layoutManager = GridLayoutManager(this, 2) // 2는 한 줄에 표시할 아이템 수입니다.
+        recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_menu)
