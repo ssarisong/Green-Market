@@ -7,13 +7,32 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kr.ac.hansung.greenmarket.R
+import kr.ac.hansung.greenmarket.models.Product
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        // Sample data for testing
+        val productList = listOf(
+            Product("Product 1", "$10", "Description 1", 10, 1),
+            Product("Product 2", "$20", "Description 2", 20, 2),
+            // Add more products as needed
+        )
+
+        val adapter = ProductAdapter(this, productList)
+
+        // Find the RecyclerView in your layout
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+
+        // Set up the RecyclerView with the adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_menu)
 
