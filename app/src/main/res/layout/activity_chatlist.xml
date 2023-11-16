@@ -18,18 +18,15 @@
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:layout_centerInParent="true"
-            android:src="@drawable/_0001"></ImageView>
+            android:src="@drawable/_0001"/>
     </RelativeLayout>
 
-    <FrameLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_chatlist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/header"
-        android:id="@+id/container">
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </FrameLayout>
+        android:background="#FFFFFF" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_menu"
