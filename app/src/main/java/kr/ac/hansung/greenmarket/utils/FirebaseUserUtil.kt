@@ -13,7 +13,6 @@ import java.util.Locale
 
 /**
  * Firebase 인증 관련 작업을 처리하는 유틸리티 클래스입니다.
- * 로그인, 회원가입, 로그아웃, 사용자 정보 조회 기능을 제공합니다.
  */
 class FirebaseUserUtil{
 

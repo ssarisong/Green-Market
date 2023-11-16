@@ -8,7 +8,4 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
     <include layout="@layout/top_menu" />
-
-
-
 </RelativeLayout>

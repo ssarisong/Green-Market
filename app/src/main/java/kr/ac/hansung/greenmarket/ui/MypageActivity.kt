@@ -3,9 +3,7 @@ package kr.ac.hansung.greenmarket.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.view.View
 import android.widget.ImageButton
-import android.widget.TextView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kr.ac.hansung.greenmarket.R
 
@@ -15,6 +13,8 @@ class MypageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_mypage)
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_menu)
+        bottomNav.selectedItemId = R.id.mypage
+
         bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
@@ -22,7 +22,7 @@ class MypageActivity : AppCompatActivity() {
                     true
                 }
                 R.id.chatting -> {
-                    startActivity(Intent(this, ChattingActivity::class.java))
+                    startActivity(Intent(this, ChatlistActivity::class.java))
                     true
                 }
                 else -> false
