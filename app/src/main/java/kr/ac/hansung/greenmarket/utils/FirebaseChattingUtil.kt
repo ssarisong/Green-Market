@@ -62,6 +62,12 @@ class FirebaseChattingUtil {
         return chattingModel.listenForMessages(chatRoomId, callback)
     }
 
+    fun listenForLastMessage(chatRoomId: String, callback: (Int, String?) -> Unit) {
+        chattingModel.listenForLastMessage(chatRoomId) { statusCode, lastMessage ->
+            callback(statusCode, lastMessage)
+        }
+    }
+
     /**
     * 사용자의 채팅방 정보를 반환합니다.
     *

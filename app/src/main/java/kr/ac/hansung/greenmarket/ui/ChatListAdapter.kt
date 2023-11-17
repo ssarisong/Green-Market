@@ -62,7 +62,9 @@ class ChatListAdapter(
                 }
             }
 
-            txtComment.text = chatRoom.lastMessage ?: "아직 대화한 기록이 없습니다."
+            chatUtil.listenForLastMessage(chatRoom.chatRoomId) { STATUS_CODE, lastMessage ->
+                txtComment.text = lastMessage ?: "아직 대화한 기록이 없습니다."
+            }
             txtTimestamp.text = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault()).format(chatRoom.createdAt.toDate()) // You can set timestamp if needed
 
             // Set user image in imageView (You need to add logic to fetch and set the image)

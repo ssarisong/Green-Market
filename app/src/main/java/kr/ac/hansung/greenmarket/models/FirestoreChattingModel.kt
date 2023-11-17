@@ -172,4 +172,26 @@ class FirestoreChattingModel {
             callback(StatusCode.FAILURE, null)
         }
     }
+
+    /**
+     * Firestore의 특정 채팅방에 대한 lastMessage 변경을 실시간으로 감지합니다.
+     *
+     * @param chatRoomId 실시간으로 감지할 채팅방의 ID입니다.
+     * @param callback lastMessage 정보를 반환하는 콜백 함수입니다.
+     */
+    fun listenForLastMessage(chatRoomId: String, callback: (Int, String?) -> Unit) {
+        db.collection("ChatRoom").document(chatRoomId)
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    Log.w("FirestoreChatModel", "채팅방 lastMessage 리스너 오류 발생", e)
+                    return@addSnapshotListener
+                }
+                if (snapshot != null && snapshot.exists()) {
+                    callback(StatusCode.SUCCESS, snapshot.getString("lastMessage"))
+                } else {
+                    Log.d("FirestoreChatModel", "현재 lastMessage 데이터 없음")
+                    callback(StatusCode.FAILURE, null)
+                }
+            }
+    }
 }
