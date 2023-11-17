@@ -68,7 +68,7 @@ class FirestoreChattingModel {
      * @return 리스너 등록을 해제하는 함수.
      */
     fun listenForMessages(chatRoomId: String, callback: (Int, List<Chat>?) -> Unit): () -> Unit {
-        val chatMessagesRef = db.collection("ChatRoom").document(chatRoomId).collection("messages")
+        val chatMessagesRef = db.collection("ChatRoom").document(chatRoomId).collection("Chat")
         val query = chatMessagesRef.orderBy("createdAt", Query.Direction.ASCENDING)
 
         val registration = query.addSnapshotListener { snapshots, e ->
