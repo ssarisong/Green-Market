@@ -22,7 +22,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/img_product"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/textCost"
+                    android:id="@+id/tv_price1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -51,15 +51,14 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textName"
+                    android:id="@+id/tv_title1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:text="이름"
+                    android:text="제목"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -69,7 +68,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/textNoti"
+                android:id="@+id/tv_productdetail1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

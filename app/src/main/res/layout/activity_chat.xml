@@ -31,7 +31,7 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_title2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -51,10 +51,10 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:background="#B6B6B6"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title2"
+        app:layout_constraintEnd_toStartOf="@+id/tv_title2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2">
+        app:layout_constraintTop_toTopOf="@+id/tv_title2">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -65,10 +65,10 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:background="#B6B6B6"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2">
+        app:layout_constraintStart_toEndOf="@+id/tv_title2"
+        app:layout_constraintTop_toTopOf="@+id/tv_title2">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -120,6 +120,6 @@
         app:layout_constraintBottom_toTopOf="@+id/edt_message"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title2"
         tools:listitem="@layout/item_message1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

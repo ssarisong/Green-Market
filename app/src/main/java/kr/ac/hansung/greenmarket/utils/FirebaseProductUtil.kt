@@ -53,4 +53,14 @@ class FirebaseProductUtil {
             }
         }
     }
+
+    fun getAllProducts(callback: (Int, List<Product>?) -> Unit) {
+        productModel.getProducts(){ STATUS_CODE, productList ->
+            if(STATUS_CODE == StatusCode.SUCCESS){
+                callback(StatusCode.SUCCESS, productList)
+            } else{
+                callback(StatusCode.FAILURE, null)
+            }
+        }
+    }
 }

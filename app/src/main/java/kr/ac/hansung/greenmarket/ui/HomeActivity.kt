@@ -7,13 +7,36 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kr.ac.hansung.greenmarket.R
+import kr.ac.hansung.greenmarket.StatusCode
+import kr.ac.hansung.greenmarket.models.Product
+import kr.ac.hansung.greenmarket.utils.FirebaseProductUtil
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        val productUtil = FirebaseProductUtil()
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+
+        productUtil.getAllProducts() {STATUS_CODE, productList ->
+            if(STATUS_CODE==StatusCode.SUCCESS){
+                recyclerView.adapter = ProductAdapter(this, productList?: emptyList<Product>())
+            }
+        }
+
+        // Find the RecyclerView in your layout
+
+
+        // Set up the RecyclerView with the adapter
+        val layoutManager = GridLayoutManager(this, 2) // 2는 한 줄에 표시할 아이템 수입니다.
+        recyclerView.layoutManager = layoutManager
+
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_menu)
 

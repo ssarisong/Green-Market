@@ -57,8 +57,8 @@ class FirestoreUserModel {
         db.collection("User").document(uid).get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot != null && documentSnapshot.exists()) {
-                    Log.d("FirestoreUserModel", "ID: [${uid}] 사용자 DB에 불러오기 성공")
                     val user = documentSnapshot.toObject(User::class.java)
+                    Log.d("FirestoreUserModel", "ID: [${uid}] 사용자 DB에 불러오기 성공")
                     callback(StatusCode.SUCCESS, user)
                 } else {
                     Log.d("FirestoreUserModel", "ID: [${uid}] 사용자가 DB에 존재하지 않음")

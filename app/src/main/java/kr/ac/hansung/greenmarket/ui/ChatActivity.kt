@@ -15,11 +15,13 @@ import kr.ac.hansung.greenmarket.R
 import kr.ac.hansung.greenmarket.StatusCode
 import kr.ac.hansung.greenmarket.models.Chat
 import kr.ac.hansung.greenmarket.utils.FirebaseChattingUtil
+import kr.ac.hansung.greenmarket.utils.FirebaseUserUtil
 import java.util.*
 
 class ChatActivity : AppCompatActivity() {
 
     private lateinit var firebaseChattingUtil: FirebaseChattingUtil
+    private lateinit var firebaseUserUtil: FirebaseUserUtil
     private lateinit var chatRoomId: String
     private lateinit var chatAdapter: ChatAdapter
     private lateinit var recyclerView: RecyclerView
@@ -28,6 +30,7 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
+        firebaseUserUtil = FirebaseUserUtil()
         firebaseChattingUtil = FirebaseChattingUtil()
 
         chatRoomId = intent.getStringExtra("chatRoomId") ?: ""
@@ -70,7 +73,7 @@ class ChatActivity : AppCompatActivity() {
         btnSubmit.setOnClickListener {
             val message = edtMessage.text.toString().trim()
             if (message.isNotEmpty()) {
-                firebaseChattingUtil.sendMessage("user1", chatRoomId, message) { statusCode ->
+                firebaseChattingUtil.sendMessage(firebaseUserUtil.whoAmI()?.uid ?: "", chatRoomId, message) { statusCode ->
                     if (statusCode == StatusCode.SUCCESS) {
                         edtMessage.text.clear()
                     } else {

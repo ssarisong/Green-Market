@@ -43,7 +43,7 @@
 
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/img_main"
                 android:layout_width="366dp"
                 android:layout_height="248dp"
                 tools:srcCompat="@color/black" />
@@ -53,30 +53,23 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="101dp"
-                    android:layout_height="44dp"
-                    android:layout_weight="1"
-                    android:scaleType="fitXY"
-                    android:src="@color/black" />
-
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/tv_title2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="제목" />
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_product_detail2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_rectangle"
-                android:text="상품설명"
                 android:inputType="textMultiLine"
-                android:lines="5" />
+                android:lines="5"
+                android:text="상품설명" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -84,21 +77,22 @@
                 android:orientation="horizontal" >
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/tv_price2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="가격" />
 
-                <Button
-                    android:id="@+id/button3"
+                <android.widget.Button
+                    android:id="@+id/btn_chatting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="채팅하기" />
+                    android:text="채팅하기"
+                    android:background="@drawable/setting_button"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"></android.widget.Button>
             </LinearLayout>
-
-
         </LinearLayout>
     </ScrollView>
 
