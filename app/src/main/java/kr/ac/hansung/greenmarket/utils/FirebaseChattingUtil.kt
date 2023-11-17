@@ -62,6 +62,12 @@ class FirebaseChattingUtil {
         return chattingModel.listenForMessages(chatRoomId, callback)
     }
 
+    fun listenForLastMessage(chatRoomId: String, callback: (Int, String?) -> Unit) {
+        chattingModel.listenForLastMessage(chatRoomId) { statusCode, lastMessage ->
+            callback(statusCode, lastMessage)
+        }
+    }
+
     /**
     * 사용자의 채팅방 정보를 반환합니다.
     *
@@ -84,6 +90,19 @@ class FirebaseChattingUtil {
     suspend fun fetchAllMessages(chatRoomId: String, callback: (Int, List<Chat>?) -> Unit) {
         chattingModel.getAllMessages(chatRoomId) { statusCode, chats ->
             callback(statusCode, chats)
+        }
+    }
+
+    fun whoIsMyPartner(chatRoomId: String, userId: String?, callback: (String?) -> Unit) {
+        chattingModel.getChatroomById(chatRoomId) { STATUS_CODE, myChatRoom ->
+            if (STATUS_CODE == StatusCode.SUCCESS) {
+                val partnerId = if (myChatRoom != null) {
+                    if (myChatRoom.buyerId == userId) myChatRoom.sellerId else myChatRoom.buyerId
+                } else null
+                callback(partnerId)
+            } else {
+                callback(null)
+            }
         }
     }
 }

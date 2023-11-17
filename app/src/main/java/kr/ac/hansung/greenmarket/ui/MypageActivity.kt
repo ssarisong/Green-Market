@@ -6,11 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageButton
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kr.ac.hansung.greenmarket.R
+import kr.ac.hansung.greenmarket.StatusCode
+import kr.ac.hansung.greenmarket.utils.FirebaseUserUtil
 
 class MypageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage)
+
+        val userUtil = FirebaseUserUtil()
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_menu)
         bottomNav.selectedItemId = R.id.mypage
@@ -46,10 +50,14 @@ class MypageActivity : AppCompatActivity() {
 
         val btnLogout = findViewById<ImageButton>(R.id.btn_logout)
         btnLogout.setOnClickListener {
-            // 로그아웃 버튼 클릭 시 LoginActivity로 이동
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()  // 로그아웃
+            userUtil.doSignOut { STATUS_CODE ->
+                if(STATUS_CODE==StatusCode.SUCCESS){
+                    // 로그아웃 버튼 클릭 시 LoginActivity로 이동
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()  // 로그아웃
+                }
+            }
         }
 
     }

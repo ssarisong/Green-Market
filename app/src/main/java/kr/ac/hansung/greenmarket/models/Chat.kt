@@ -5,9 +5,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 data class Chat(
-    val senderId: String,
-    val message: String,
-    val createdAt: Timestamp
+    val senderId: String = "",
+    val message: String = "",
+    val createdAt: Timestamp = Timestamp.now()
 ) {
     fun getFormattedDate(): String {
         // Timestamp를 가져와서 HH:mm 형식으로 변환

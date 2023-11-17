@@ -31,5 +31,6 @@
         <activity android:name=".ui.ChatActivity"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.NewPostActivity" />
+        <activity android:name=".ui.ProductDetailActivity" />
     </application>
 </manifest>
