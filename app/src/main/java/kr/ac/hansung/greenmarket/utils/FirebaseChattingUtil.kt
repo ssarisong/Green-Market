@@ -86,4 +86,17 @@ class FirebaseChattingUtil {
             callback(statusCode, chats)
         }
     }
+
+    fun whoIsMyPartner(chatRoomId: String, userId: String?, callback: (String?) -> Unit) {
+        chattingModel.getChatroomById(chatRoomId) { STATUS_CODE, myChatRoom ->
+            if (STATUS_CODE == StatusCode.SUCCESS) {
+                val partnerId = if (myChatRoom != null) {
+                    if (myChatRoom.buyerId == userId) myChatRoom.sellerId else myChatRoom.buyerId
+                } else null
+                callback(partnerId)
+            } else {
+                callback(null)
+            }
+        }
+    }
 }

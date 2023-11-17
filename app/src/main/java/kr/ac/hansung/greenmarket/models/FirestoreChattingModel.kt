@@ -160,4 +160,16 @@ class FirestoreChattingModel {
         }
     }
 
+    fun getChatroomById(chatRoomId: String, callback: (Int, ChatRoom?) -> Unit) {
+        db.collection("ChatRoom").document(chatRoomId).get().addOnSuccessListener { document ->
+            if (document.exists()) {
+                val chatRoom = document.toObject(ChatRoom::class.java)
+                callback(StatusCode.SUCCESS, chatRoom)
+            } else {
+                callback(StatusCode.FAILURE, null)
+            }
+        }.addOnFailureListener {
+            callback(StatusCode.FAILURE, null)
+        }
+    }
 }
