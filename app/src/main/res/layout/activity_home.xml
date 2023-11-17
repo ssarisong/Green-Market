@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/setting_button"
-                android:text="글쓰기"
+                android:text="상품등록"
                 android:textColor="@color/white"
                 android:textSize="12sp"></android.widget.Button>
         </LinearLayout>
