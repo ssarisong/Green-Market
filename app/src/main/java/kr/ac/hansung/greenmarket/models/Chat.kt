@@ -14,4 +14,8 @@ data class Chat(
         val formattedDate = SimpleDateFormat("HH:mm", Locale.getDefault()).format(createdAt.toDate())
         return formattedDate
     }
+
+    fun isSentByCurrentUser(currentUserId: String): Boolean {
+        return senderId == currentUserId
+    }
 }

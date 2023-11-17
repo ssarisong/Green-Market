@@ -10,12 +10,21 @@ import kr.ac.hansung.greenmarket.models.Chat
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class ChatAdapter(private val chatList: MutableList<Chat>) :
+class ChatAdapter(private val chatList: MutableList<Chat>, private val currentUserId: String) :
     RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
 
+    // 상수 정의
+    private val VIEW_TYPE_SENT = 1
+    private val VIEW_TYPE_RECEIVED = 2
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_message1, parent, false)
+        val layoutResId = if (viewType == VIEW_TYPE_SENT) {
+            R.layout.item_message1
+        } else {
+            R.layout.item_message2
+        }
+
+        val view = LayoutInflater.from(parent.context).inflate(layoutResId, parent, false)
         return ChatViewHolder(view)
     }
 
@@ -26,6 +35,15 @@ class ChatAdapter(private val chatList: MutableList<Chat>) :
 
     override fun getItemCount(): Int {
         return chatList.size
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        val chat = chatList[position]
+        return if (chat.isSentByCurrentUser(currentUserId)) {
+            VIEW_TYPE_SENT
+        } else {
+            VIEW_TYPE_RECEIVED
+        }
     }
 
     fun addChat(chat: Chat) {
