@@ -76,9 +76,15 @@ class FirestoreProductModel {
      * @param callback 상품 정보 조회 상태 코드(STATUS_CODE)와 상품 리스트를 반환하는 콜백 함수입니다.
      */
     fun getProducts(callback: (Int, List<Product>?) -> Unit) {
-        db.collection("Product").get()
-            .addOnSuccessListener { querySnapshot ->
-                if (!querySnapshot.isEmpty) {
+        db.collection("Product")
+            .addSnapshotListener { querySnapshot, e ->
+                if (e != null) {
+                    Log.w("FirestoreProductModel", "상품 목록을 DB에서 불러오는 중 에러 발생!!! -> ", e)
+                    callback(StatusCode.FAILURE, null)
+                    return@addSnapshotListener
+                }
+
+                if (querySnapshot != null && !querySnapshot.isEmpty) {
                     val productList = querySnapshot.documents.mapNotNull { document ->
                         document.toObject(Product::class.java)
                     }
@@ -88,10 +94,6 @@ class FirestoreProductModel {
                     Log.d("FirestoreProductModel", "상품 목록이 DB에 존재하지 않음")
                     callback(StatusCode.SUCCESS, null)
                 }
-            }
-            .addOnFailureListener { e ->
-                Log.w("FirestoreProductModel", "상품 목록을 DB에서 불러오는 중 에러 발생!!! -> ", e)
-                callback(StatusCode.FAILURE, null)
             }
     }
 }

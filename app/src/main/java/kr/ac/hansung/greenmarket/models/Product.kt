@@ -1,6 +1,7 @@
 package kr.ac.hansung.greenmarket.models
 
 data class Product(
+    val sellerId: String = "",
     val name: String = "",
     val img: String = "",
     val detail: String = "",
