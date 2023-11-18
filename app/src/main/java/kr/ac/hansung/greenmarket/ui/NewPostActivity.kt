@@ -7,7 +7,9 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kr.ac.hansung.greenmarket.R
-import kr.ac.hansung.greenmarket.models.Product
+import kr.ac.hansung.greenmarket.StatusCode
+import kr.ac.hansung.greenmarket.utils.FirebaseProductUtil
+import kr.ac.hansung.greenmarket.utils.FirebaseUserUtil
 
 class NewPostActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +17,10 @@ class NewPostActivity : AppCompatActivity() {
         setContentView(R.layout.activity_new_post)
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_menu)
+
+        val userUtil = FirebaseUserUtil()
+        val productUtil = FirebaseProductUtil()
+
         bottomNav.selectedItemId = R.id.home
 
         bottomNav.setOnItemSelectedListener { item ->
@@ -42,17 +48,21 @@ class NewPostActivity : AppCompatActivity() {
             val price = findViewById<EditText>(R.id.tv_price).text.toString()
             val detail = findViewById<EditText>(R.id.et_detail).text.toString()
 
-            val product = Product(name = title, detail = detail, price = price.toInt())
-
             val intentProductDetail = Intent(this, ProductDetailActivity::class.java)
-            intentProductDetail.putExtra("productName", product.name)
 
             val intentHome = Intent(this, HomeActivity::class.java)
             intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) // Clear the back stack
 
-            // Start both activities
-            startActivity(intentProductDetail)
-            startActivity(intentHome)
+            productUtil.createProduct(userUtil.whoAmI()?.uid?: "", title, "img", detail, price.toInt()) { STATUS_CODE, newProductId ->
+                if(STATUS_CODE == StatusCode.SUCCESS){
+                    // 상품 등록이 성공한 경우
+                    intentProductDetail.putExtra("productId", newProductId)
+                    startActivity(intentProductDetail)
+                } else{
+                    // 상품 등록이 실패한 경우
+                    startActivity(intentHome)
+                }
+            }
         }
     }
 }

@@ -19,7 +19,9 @@ class FirestoreProductModel {
      */
     fun insertProduct(product: Product, callback: (Int, String)->Unit){
         val newProduct = db.collection("Product").document()
-        newProduct.set(product).addOnSuccessListener {
+
+        val updatedProduct = product.copy(productId = newProduct.id)
+        newProduct.set(updatedProduct).addOnSuccessListener {
             Log.d("FirestoreProductModel", "(${product.name}) 상품 DB 성공적으로 생성 -> ID: [${newProduct.id}]")
             callback(StatusCode.SUCCESS, newProduct.id)
         }.addOnFailureListener{ e->

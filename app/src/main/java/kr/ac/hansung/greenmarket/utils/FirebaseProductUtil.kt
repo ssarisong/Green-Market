@@ -22,7 +22,7 @@ class FirebaseProductUtil {
      * @param callback 상품 등록 성공 시 상태 코드(STATUS_CODE)와 상품의 ID를 인자로 받는 콜백 함수입니다.
      */
     fun createProduct(userId: String, productNm: String, productImg: String, productDetail: String, productPrice: Int, callback: (Int, String) -> Unit) {
-        val product = Product(userId, productNm, productImg, productDetail, productPrice, 0)
+        val product = Product("", userId, productNm, productImg, productDetail, productPrice, 0)
 
         productModel.insertProduct(product) { STATUS_CODE, pid ->
             if(STATUS_CODE == StatusCode.SUCCESS){
