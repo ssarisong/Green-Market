@@ -42,7 +42,7 @@ class ChatActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recycler_messages)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        chatAdapter = ChatAdapter(mutableListOf())
+        chatAdapter = ChatAdapter(mutableListOf(), firebaseUserUtil.whoAmI()?.uid ?: "")
         recyclerView.adapter = chatAdapter
 
         chatRoomId = intent.getStringExtra("chatRoomId") ?: ""

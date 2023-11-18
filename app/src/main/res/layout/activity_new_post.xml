@@ -51,15 +51,17 @@
                 android:text="제목"></TextView>
 
             <EditText
+                android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:hint="제목을 입력하세요." />
 
             <android.widget.Button
+                android:id="@+id/btn_addphoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="사진 첨부"
-                android:layout_marginTop="16dp"></android.widget.Button>
+                android:layout_marginTop="16dp"
+                android:text="사진 첨부"></android.widget.Button>
 
             <TextView
                 android:layout_width="136dp"
@@ -67,12 +69,15 @@
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:text="이미지 미리보기"></TextView>
-            <ImageView
+                android:text="가격"></TextView>
+
+            <EditText
+                android:id="@+id/tv_price"
                 android:layout_width="match_parent"
-                android:layout_height="101dp"
-                android:layout_marginTop="16dp"
-                android:scaleType="fitCenter" />
+                android:layout_height="48dp"
+                android:hint="가격을 입력하세요." />
+
+
 
 
             <TextView
@@ -84,33 +89,21 @@
                 android:text="상품 설명"></TextView>
 
             <EditText
+                android:id="@+id/et_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:background="@drawable/edittext_rectangle"
                 android:hint="내용을 입력하세요"
                 android:inputType="textMultiLine"
-                android:background="@drawable/edittext_rectangle"
                 android:lines="5" />
 
-            <TextView
-                android:layout_width="136dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:text="거래 희망 장소"></TextView>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
-                android:hint="위치 추가" />
-
             <android.widget.Button
+                android:id="@+id/btn_finish"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="작성 완료"
-                android:layout_marginTop="16dp"></android.widget.Button>
+                android:layout_marginTop="16dp"
+                android:text="작성 완료"></android.widget.Button>
         </LinearLayout>
     </ScrollView>
 
