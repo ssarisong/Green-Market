@@ -52,6 +52,7 @@ class ChatAdapter(private val chatList: MutableList<Chat>, private val currentUs
     }
 
     fun addChatList(messages: List<Chat>) {
+        chatList.clear()
         chatList.addAll(messages)
         notifyDataSetChanged()
     }
