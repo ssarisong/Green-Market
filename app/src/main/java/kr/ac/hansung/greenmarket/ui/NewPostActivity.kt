@@ -1,6 +1,8 @@
 package kr.ac.hansung.greenmarket.ui
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -12,6 +14,7 @@ import kr.ac.hansung.greenmarket.utils.FirebaseProductUtil
 import kr.ac.hansung.greenmarket.utils.FirebaseUserUtil
 
 class NewPostActivity : AppCompatActivity() {
+    private var selectedImageUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_post)
@@ -41,6 +44,11 @@ class NewPostActivity : AppCompatActivity() {
             }
         }
 
+        val btnAddPhoto = findViewById<Button>(R.id.btn_addphoto)
+        btnAddPhoto.setOnClickListener {
+            openImageChooser()
+        }
+
         val btnFinish = findViewById<Button>(R.id.btn_finish)
 
         btnFinish.setOnClickListener {
@@ -49,11 +57,10 @@ class NewPostActivity : AppCompatActivity() {
             val detail = findViewById<EditText>(R.id.et_detail).text.toString()
 
             val intentProductDetail = Intent(this, ProductDetailActivity::class.java)
-
             val intentHome = Intent(this, HomeActivity::class.java)
-            intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) // Clear the back stack
+            intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
-            productUtil.createProduct(userUtil.whoAmI()?.uid?: "", title, "img", detail, price.toInt()) { STATUS_CODE, newProductId ->
+            productUtil.createProduct(userUtil.whoAmI()?.uid?: "", title, selectedImageUri.toString(), detail, price.toInt()) { STATUS_CODE, newProductId ->
                 if(STATUS_CODE == StatusCode.SUCCESS){
                     // 상품 등록이 성공한 경우
                     intentProductDetail.putExtra("productId", newProductId)
@@ -64,5 +71,23 @@ class NewPostActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun openImageChooser() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_PICK_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+            selectedImageUri = data?.data
+            // 선택된 이미지 URI를 변수에 저장, 필요한 경우 ImageView에 표시
+        }
+    }
+
+    companion object {
+        private const val IMAGE_PICK_CODE = 1000
     }
 }

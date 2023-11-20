@@ -1,6 +1,7 @@
 package kr.ac.hansung.greenmarket.utils
 
 import android.util.Log
+import com.google.firebase.Timestamp
 import kr.ac.hansung.greenmarket.StatusCode
 import kr.ac.hansung.greenmarket.models.FirestoreProductModel
 import kr.ac.hansung.greenmarket.models.Product
@@ -21,14 +22,14 @@ class FirebaseProductUtil {
      * @param productPrice 등록할 상품의 가격입니다.
      * @param callback 상품 등록 성공 시 상태 코드(STATUS_CODE)와 상품의 ID를 인자로 받는 콜백 함수입니다.
      */
-    fun createProduct(userId: String, productNm: String, productImg: String, productDetail: String, productPrice: Int, callback: (Int, String) -> Unit) {
-        val product = Product("", userId, productNm, productImg, productDetail, productPrice, 0)
+    fun createProduct(userId: String, productNm: String, productImg: String, productDetail: String, productPrice: Int, callback: (Int, String?) -> Unit) {
+        val product = Product("", userId, productNm, productImg, productDetail, productPrice, 0, Timestamp.now())
 
         productModel.insertProduct(product) { STATUS_CODE, pid ->
             if(STATUS_CODE == StatusCode.SUCCESS){
                 callback(StatusCode.SUCCESS, pid)
             }else{
-                callback(StatusCode.FAILURE, pid)
+                callback(StatusCode.FAILURE, null)
             }
         }
     }

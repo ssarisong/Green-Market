@@ -5,8 +5,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kr.ac.hansung.greenmarket.R
 import kr.ac.hansung.greenmarket.models.Product
 
@@ -25,6 +27,9 @@ class ProductAdapter(private val context: Context, private val productList: List
         holder.itemView.findViewById<TextView>(R.id.tv_title1).text = product.name
         holder.itemView.findViewById<TextView>(R.id.tv_price1).text = product.price.toString()
         holder.itemView.findViewById<TextView>(R.id.tv_productdetail1).text = product.detail
+        Glide.with(holder.itemView.context)
+            .load(product.img)
+            .into(holder.itemView.findViewById<ImageView>(R.id.img_product))
 
         // 추가: itemView 클릭 리스너 설정
         holder.itemView.setOnClickListener {
