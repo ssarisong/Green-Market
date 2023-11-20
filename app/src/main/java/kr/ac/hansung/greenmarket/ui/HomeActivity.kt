@@ -30,11 +30,7 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        // Find the RecyclerView in your layout
-
-
-        // Set up the RecyclerView with the adapter
-        val layoutManager = GridLayoutManager(this, 2) // 2는 한 줄에 표시할 아이템 수입니다.
+        val layoutManager = GridLayoutManager(this, 2) // 2는 한 줄에 표시되는 아이템 수
         recyclerView.layoutManager = layoutManager
 
 
@@ -46,17 +42,14 @@ class HomeActivity : AppCompatActivity() {
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
-                    // "홈" 메뉴를 클릭한 경우, 홈 화면으로 이동
                     startActivity(Intent(this, HomeActivity::class.java))
                     true
                 }
                 R.id.chatting -> {
-                    // "채팅" 메뉴를 클릭한 경우, 채팅 화면으로 이동
                     startActivity(Intent(this, ChatlistActivity::class.java))
                     true
                 }
                 R.id.mypage -> {
-                    // "마이페이지" 메뉴를 클릭한 경우, 마이페이지 화면으로 이동
                     startActivity(Intent(this, MypageActivity::class.java))
                     true
                 }
