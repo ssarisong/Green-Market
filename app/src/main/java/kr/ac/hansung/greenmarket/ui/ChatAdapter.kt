@@ -39,7 +39,7 @@ class ChatAdapter(private val chatList: MutableList<Chat>, private val currentUs
 
     override fun getItemViewType(position: Int): Int {
         val chat = chatList[position]
-        return if (chat.isSentByCurrentUser(currentUserId)) {
+        return if (chat.senderId == currentUserId) {
             VIEW_TYPE_SENT
         } else {
             VIEW_TYPE_RECEIVED

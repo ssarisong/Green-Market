@@ -30,10 +30,10 @@ class FirebaseUserUtil{
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val uid = Firebase.auth.currentUser?.uid.toString()
-                    Log.d("FirebaseLoginUtils", "ID: [${uid}] 사용자 로그인 성공")
+                    Log.d("FirebaseLoginUtils", "[${uid}] 사용자 로그인 성공")
                     callback(StatusCode.SUCCESS, uid)
                 } else {
-                    Log.w("FirebaseLoginUtils", "EMAIL: [${userEmail}] 사용자 로그인 실패!!! -> ", task.exception)
+                    Log.w("FirebaseLoginUtils", "EMAIL[${userEmail}] 사용자 로그인 실패!!! -> ", task.exception)
                     callback(StatusCode.FAILURE, null)
                 }
             }
@@ -59,15 +59,14 @@ class FirebaseUserUtil{
                     val newUser = User(userEmail, name, birthDate, Timestamp.now())
                     userModel.insertUser(uid, newUser) { STATUS_CODE ->
                         if (STATUS_CODE == StatusCode.SUCCESS) {
-                            Log.d("FirebaseLoginUtils", "Auth에서 사용자 성공적으로 생성 -> ID: [${uid}]")
                             callback(StatusCode.SUCCESS, uid)
                         } else {
                             currentUser?.delete()
                                 ?.addOnCompleteListener { deletionTask ->
                                     if (deletionTask.isSuccessful) {
-                                        Log.d("FirebaseLoginUtils", "Auth 계정 삭제 성공 -> ID: [${uid}]")
+                                        Log.d("FirebaseLoginUtils", "[${uid}] 계정 DB 정보 추가 실패로 인한 Auth 계정 삭제 성공")
                                     } else {
-                                        Log.w("FirebaseLoginUtils", "Auth 계정 삭제 실패!! -> ", deletionTask.exception)
+                                        Log.w("FirebaseLoginUtils", "[${uid}] 계정 DB 정보 추가 실패로 인한 Auth 계정 삭제 실패!!! -> ", deletionTask.exception)
                                     }
                                 }
                             callback(StatusCode.FAILURE, null)
@@ -86,13 +85,13 @@ class FirebaseUserUtil{
      * @param callback 로그아웃 결과를 나타내는 상태 코드(STATUS_CODE)를 인자로 받는 콜백 함수입니다.
      */
     fun doSignOut(callback: (Int) -> Unit) {
-        val uid = Firebase.auth.currentUser?.uid
+        val uid = whoAmI()?.uid
         Firebase.auth.signOut()
         if (Firebase.auth.currentUser == null) {
-            Log.d("FirebaseLoginUtils", "ID: [${uid}] 사용자 로그아웃 성공")
+            Log.d("FirebaseLoginUtils", "[${uid}] 사용자 로그아웃 성공")
             callback(StatusCode.SUCCESS)
         } else {
-            Log.w("FirebaseLoginUtils", "ID: [${uid}] 사용자 로그아웃 실패...")
+            Log.w("FirebaseLoginUtils", "[${uid}] 사용자 로그아웃 실패...")
             callback(StatusCode.FAILURE)
         }
     }
@@ -113,6 +112,11 @@ class FirebaseUserUtil{
         }
     }
 
+    /**
+     * 현재 로그인한 Firebase 사용자의 정보를 반환합니다.
+     *
+     * @return FirebaseUser 객체로 현재 로그인한 사용자의 정보를 반환하거나, 로그인한 사용자가 없을 경우 null을 반환합니다.
+     */
     fun whoAmI(): FirebaseUser? {
         return Firebase.auth.currentUser
     }

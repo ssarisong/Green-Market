@@ -62,21 +62,18 @@ class ChatListAdapter(
                 }
             }
 
-            chatUtil.listenForLastMessage(chatRoom.chatRoomId) { STATUS_CODE, lastMessage ->
-                txtComment.text = lastMessage ?: "아직 대화한 기록이 없습니다."
-            }
-            if(chatRoom.lastMessageAt!=null) {
-                txtTimestamp.text = SimpleDateFormat(
-                    "MM.dd HH:mm",
-                    Locale.getDefault()
-                ).format(chatRoom.lastMessageAt.toDate()) // You can set timestamp if needed
-            } else {
-                txtTimestamp.text = ""
-            }
+            chatUtil.listenForLastMessage(chatRoom.chatRoomId) { STATUS_CODE, lastMessage, lastMessageAt ->
+                if(STATUS_CODE == StatusCode.SUCCESS){
+                    txtComment.text = lastMessage ?: "아직 대화한 기록이 없습니다."
+                    txtTimestamp.text = lastMessageAt?.let {
+                        SimpleDateFormat("MM.dd HH:mm", Locale.getDefault()).format(it.toDate())
+                    } ?: ""
+                } else {
+                    txtComment.text = "아직 대화한 기록이 없습니다."
+                    txtTimestamp.text = ""
+                }
 
-            // Set user image in imageView (You need to add logic to fetch and set the image)
-            // Glide or Picasso can be used for loading images.
-            // Example: Glide.with(itemView.context).load(chatRoom.imageUrl).into(imageView)
+            }
         }
     }
 }
