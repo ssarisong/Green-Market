@@ -104,7 +104,7 @@ class FirebaseChattingUtil {
      *
      * @param chatRoomId 조회할 채팅방의 ID입니다.
      * @param userId 사용자의 ID입니다. 이 ID를 기반으로 파트너를 식별합니다.
-     * @param callback 파트너 ID 조회에 성공하거나 실패했을 때 상태 코드(StatusCode)와 파트너 ID를 인자로 받는 콜백 함수입니다.
+     * @param callback 파트너 ID 조회에 성공하거나 실패했을 때 파트너 ID를 인자로 받는 콜백 함수입니다.
      */
     fun whoIsMyPartner(chatRoomId: String, userId: String?, callback: (String?) -> Unit) {
         chattingModel.getChatroomById(chatRoomId) { STATUS_CODE, myChatRoom ->
