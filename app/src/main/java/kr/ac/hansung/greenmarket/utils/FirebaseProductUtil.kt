@@ -87,4 +87,19 @@ class FirebaseProductUtil {
             }
         }
     }
+
+    /**
+     * 판매자의 ID를 사용하여 해당 판매자의 모든 판매 상품 목록을 가져옵니다.
+     *
+     * @param callback 상품 조회 성공 시 상태 코드(STATUS_CODE)와 해당 사용자가 등록한 상품 리스트를 인자로 받는 콜백 함수입니다.
+     */
+    fun getProductsBySellerId(sellerId: String, callback: (Int, List<Product>?) -> Unit) {
+        productModel.getProducts() {STATUS_CODE, products ->
+            if(STATUS_CODE == StatusCode.SUCCESS){
+                callback(StatusCode.SUCCESS, products?.filter { it.sellerId == sellerId })
+            } else{
+                callback(StatusCode.FAILURE, null)
+            }
+        }
+    }
 }
