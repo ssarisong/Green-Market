@@ -2,7 +2,9 @@ package kr.ac.hansung.greenmarket.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -16,6 +18,7 @@ import kr.ac.hansung.greenmarket.models.Product
 import kr.ac.hansung.greenmarket.utils.FirebaseProductUtil
 
 class HomeActivity : AppCompatActivity() {
+    private lateinit var searchEditText: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -23,6 +26,7 @@ class HomeActivity : AppCompatActivity() {
         val productUtil = FirebaseProductUtil()
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        searchEditText = findViewById(R.id.search_edit_text)
 
         productUtil.getAllProducts() {STATUS_CODE, productList ->
             if(STATUS_CODE==StatusCode.SUCCESS){
@@ -69,6 +73,16 @@ class HomeActivity : AppCompatActivity() {
         filterButton.setOnClickListener {
             showFilterDialog()
         }
+
+        val searchButton = findViewById<Button>(R.id.search_button)
+
+        searchButton.setOnClickListener {
+            // 검색 버튼을 클릭한 경우, 검색어를 이용하여 데이터를 필터링하거나 처리할 로직을 추가할 수 있습니다.
+            val searchQuery = searchEditText.text.toString().trim()
+            if (searchQuery.isNotEmpty()) {
+//                Toast.makeText(this, "검색어: $searchQuery", Toast.LENGTH_SHORT).show() // 확인용..
+            }
+        }
     }
 
     private fun showFilterDialog() {
@@ -104,4 +118,6 @@ class HomeActivity : AppCompatActivity() {
 
         builder.create().show()
     }
+
+
 }
