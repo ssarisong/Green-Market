@@ -11,11 +11,13 @@ import kr.ac.hansung.greenmarket.models.Product
  * 상품 추가, 조회 기능을 제공합니다.
  */
 class FirebaseProductUtil {
+
     private val productModel = FirestoreProductModel()
 
     /**
      * 중고거래 상품을 새로 등록합니다.
      *
+     * @param userId 상품을 등록하는 사용자의 ID입니다.
      * @param productNm 등록할 상품의 이름입니다.
      * @param productImg 등록할 상품의 이미지입니다.
      * @param productDetail 등록할 상품의 상세설명입니다.
@@ -40,7 +42,7 @@ class FirebaseProductUtil {
      * @param productId 검색할 상품의 ID입니다.
      * @param callback 상품 정보 조회 성공 시 상태 코드(STATUS_CODE)와 상품 객체를 인자로 받는 콜백 함수입니다.
      */
-    fun SearchById(productId: String, callback: (Int, Product?) -> Unit){
+    fun getProductById(productId: String, callback: (Int, Product?) -> Unit){
         productModel.getProductsById(productId){ STATUS_CODE, product ->
             if(STATUS_CODE == StatusCode.SUCCESS){
                 if(product != null){
@@ -55,12 +57,33 @@ class FirebaseProductUtil {
         }
     }
 
+    /**
+     * 모든 제품의 목록을 실시간으로 조회합니다.
+     *
+     * @param callback 전체 상품 정보 조회 성공 시 상태 코드(STATUS_CODE)와 상품 객체 리스트를 인자로 받는 콜백 함수입니다.
+     */
     fun getAllProducts(callback: (Int, List<Product>?) -> Unit) {
         productModel.getProducts(){ STATUS_CODE, productList ->
             if(STATUS_CODE == StatusCode.SUCCESS){
                 callback(StatusCode.SUCCESS, productList)
             } else{
                 callback(StatusCode.FAILURE, null)
+            }
+        }
+    }
+
+    /**
+     * 중고상품 ID를 받아 해당 상품을 삭제합니다.
+     *
+     * @param productId 삭제할 상품의 ID입니다.
+     * @param callback 상품 삭제 성공 여부를 알려주는 상태 코드(STATUS_CODE)를 인자로 받는 콜백 함수입니다.
+     */
+    fun deleteProduct(productId: String, callback: (Int) -> Unit) {
+        productModel.deleteproduct(productId){ STATUS_CODE ->
+            if(STATUS_CODE == StatusCode.SUCCESS){
+                callback(StatusCode.SUCCESS)
+            } else{
+                callback(StatusCode.FAILURE)
             }
         }
     }
