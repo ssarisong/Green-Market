@@ -23,7 +23,7 @@ class ProductDetailActivity : AppCompatActivity() {
         val productId = intent.getStringExtra("productId")
 
         if (productId != null) {
-            productUtil.SearchById(productId) { STATUS_CODE, product ->
+            productUtil.getProductById(productId) { STATUS_CODE, product ->
                 if(STATUS_CODE==StatusCode.SUCCESS){
                     findViewById<TextView>(R.id.tv_title2).text = product?.name ?: "로딩 실패"
                     findViewById<TextView>(R.id.tv_product_detail2).text = product?.detail ?: "로딩 실패"

@@ -19,8 +19,8 @@ class FirebaseChattingUtil {
     /**
      * 새 채팅방을 생성합니다.
      *
-     * @param productId 상품의 고유 ID.
-     * @param buyerId 구매자의 사용자 ID.
+     * @param productId 해당 상품의 ID.
+     * @param buyerId 구매희망자의 사용자 ID.
      * @param sellerId 판매자의 사용자 ID.
      * @param callback 채팅방 생성 성공 시 상태 코드(StatusCode)와 채팅방 리스트를 인자로 받는 콜백 함수입니다.
      */
@@ -62,9 +62,15 @@ class FirebaseChattingUtil {
         return chattingModel.listenForMessages(chatRoomId, callback)
     }
 
-    fun listenForLastMessage(chatRoomId: String, callback: (Int, String?) -> Unit) {
-        chattingModel.listenForLastMessage(chatRoomId) { statusCode, lastMessage ->
-            callback(statusCode, lastMessage)
+    /**
+     * 마지막 메시지 및 그 시간을 실시간으로 감지하는 리스너를 설정합니다.
+     *
+     * @param chatRoomId 마지막 메시지를 감지할 채팅방의 ID입니다.
+     * @param callback 마지막 메시지 감지 성공 또는 실패 시 상태 코드(StatusCode), 마지막 메시지, 마지막 메시지를 보낸 시간을 인자로 받는 콜백 함수입니다.
+     */
+    fun listenForLastMessage(chatRoomId: String, callback: (Int, String?, Timestamp?) -> Unit) {
+        chattingModel.listenForLastMessage(chatRoomId) { statusCode, lastMessage, lastMessageAt ->
+            callback(statusCode, lastMessage, lastMessageAt)
         }
     }
 
@@ -93,6 +99,13 @@ class FirebaseChattingUtil {
         }
     }
 
+    /**
+     * 특정 채팅방에서 사용자의 파트너(상대방)의 ID를 조회합니다.
+     *
+     * @param chatRoomId 조회할 채팅방의 ID입니다.
+     * @param userId 사용자의 ID입니다. 이 ID를 기반으로 파트너를 식별합니다.
+     * @param callback 파트너 ID 조회에 성공하거나 실패했을 때 상태 코드(StatusCode)와 파트너 ID를 인자로 받는 콜백 함수입니다.
+     */
     fun whoIsMyPartner(chatRoomId: String, userId: String?, callback: (String?) -> Unit) {
         chattingModel.getChatroomById(chatRoomId) { STATUS_CODE, myChatRoom ->
             if (STATUS_CODE == StatusCode.SUCCESS) {
