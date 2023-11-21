@@ -74,6 +74,14 @@
                     android:text="제목"
                     android:textSize="22sp"
                     android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_product_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TextView
