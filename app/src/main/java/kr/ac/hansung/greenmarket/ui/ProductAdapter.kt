@@ -24,9 +24,48 @@ class ProductAdapter(private val context: Context, private val productList: List
         val product = productList[position]
 
         // ViewHolder 클래스에서 뷰에 직접 접근
-        holder.itemView.findViewById<TextView>(R.id.tv_title1).text = product.name
-        holder.itemView.findViewById<TextView>(R.id.tv_price1).text = product.price.toString()
-        holder.itemView.findViewById<TextView>(R.id.tv_productdetail1).text = product.detail
+
+        // 가격이 일정 길이 이상이면 '...'으로 생략
+        val priceTextView = holder.itemView.findViewById<TextView>(R.id.tv_price1)
+
+        val maxPriceLength = if (product.name.length<=5) {
+            9
+        } else {
+            6
+        }
+        val truncatedPrice = if (product.price.toString().length > maxPriceLength) {
+            "${product.price.toString().substring(0, maxPriceLength)}⋯"
+        } else {
+            product.price.toString()
+        }
+        priceTextView.text = truncatedPrice
+//        holder.itemView.findViewById<TextView>(R.id.tv_price1).text = product.price.toString()
+
+        // 제목이 일정 길이 이상이면 '...'으로 생략
+        val maxTitleLength = if (product.price.toString().length <= 5) {
+            8
+        } else {
+            6
+        }
+        val truncatedTitle = if (product.name.length > maxTitleLength) {
+            "${product.name.substring(0, maxTitleLength)}⋯"
+        } else {
+            product.name
+        }
+        holder.itemView.findViewById<TextView>(R.id.tv_title1).text = truncatedTitle
+//        holder.itemView.findViewById<TextView>(R.id.tv_title1).text = product.name
+
+        // 제품 설명이 일정 길이 이상이면 '...'으로 생략
+        val maxDetailLength = 10
+        val truncatedDetail = if (product.detail.length > maxDetailLength) {
+            "${product.detail.substring(0, maxDetailLength)}⋯"
+        } else {
+            product.detail
+        }
+        holder.itemView.findViewById<TextView>(R.id.tv_productdetail1).text = truncatedDetail
+//        holder.itemView.findViewById<TextView>(R.id.tv_productdetail1).text = product.detail
+
+
         Glide.with(holder.itemView.context)
             .load(product.img)
             .into(holder.itemView.findViewById<ImageView>(R.id.img_product))
