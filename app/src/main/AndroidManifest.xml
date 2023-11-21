@@ -32,5 +32,6 @@
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.NewPostActivity" />
         <activity android:name=".ui.ProductDetailActivity" />
+        <activity android:name=".ui.MypostListActivity" />
     </application>
 </manifest>

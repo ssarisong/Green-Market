@@ -50,11 +50,8 @@ class MypageActivity : AppCompatActivity() {
         val btnMypost = findViewById<ImageButton>(R.id.btn_mypost)
         btnMypost.setOnClickListener {
             // 내가 쓴 글 버튼 클릭 시 실행할 코드
-        }
-
-        val btnMyproduct = findViewById<ImageButton>(R.id.btn_myproduct)
-        btnMyproduct.setOnClickListener {
-            // 내가 구매한 상품 버튼 클릭 시 실행할 코드
+            val intent = Intent(this, MypostListActivity::class.java)
+            startActivity(intent)
         }
 
         val btnLogout = findViewById<ImageButton>(R.id.btn_logout)
