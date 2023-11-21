@@ -3,6 +3,7 @@ package kr.ac.hansung.greenmarket.ui
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -17,6 +18,7 @@ import java.util.Calendar
 class JoinActivity : AppCompatActivity() {
 
     private var selectedDateTextView: TextView? = null
+    private var isPasswordHidden = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +26,31 @@ class JoinActivity : AppCompatActivity() {
 
         val userUtil = FirebaseUserUtil()
 
-        // 버튼 클릭 시 DatePickerActivity로 이동
-//        findViewById<Button>(R.id.button_DatePicker).setOnClickListener {
-//            startActivity(Intent(this, DatePickerActivity::class.java))
-//        }
+        val passwordEditText = findViewById<EditText>(R.id.editText_Pw)
+        val togglePasswordButton = findViewById<Button>(R.id.button_TogglePassword)
+
+        // 비밀번호 보이기/숨기기
+        togglePasswordButton.setOnClickListener {
+            isPasswordHidden = !isPasswordHidden
+            val start = passwordEditText.selectionStart
+            val end = passwordEditText.selectionEnd
+            updatePasswordVisibility(passwordEditText)
+            passwordEditText.setSelection(start, end)
+        }
+
+        fun updatePasswordVisibility(passwordEditText: EditText) {
+            if (isPasswordHidden) {
+                passwordEditText.transformationMethod = PasswordTransformationMethod.getInstance()
+            } else {
+                passwordEditText.transformationMethod = null
+            }
+        }
+        updatePasswordVisibility(passwordEditText)
+
+
+        findViewById<Button>(R.id.button_DatePicker).setOnClickListener {
+            startActivity(Intent(this, DatePickerActivity::class.java))
+        }
 
         selectedDateTextView = findViewById(R.id.selectedDateTextView)
         val button_DatePicker = findViewById<Button>(R.id.button_DatePicker)
@@ -94,6 +117,18 @@ class JoinActivity : AppCompatActivity() {
                 Intent(this, LoginActivity::class.java)
             )
         }
+    }
+    private fun updatePasswordVisibility(passwordEditText: EditText) {
+        val selectionStart = passwordEditText.selectionStart
+        val selectionEnd = passwordEditText.selectionEnd
+
+        if (isPasswordHidden) {
+            passwordEditText.transformationMethod = PasswordTransformationMethod.getInstance()
+        } else {
+            passwordEditText.transformationMethod = null
+        }
+
+        passwordEditText.setSelection(selectionStart, selectionEnd)
     }
 
 
