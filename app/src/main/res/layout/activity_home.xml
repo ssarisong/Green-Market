@@ -30,12 +30,14 @@
                 android:paddingTop="10dp"
                 tools:layout_marginLeft="15dp">
 
-                <TextView
+                <EditText
+                    android:id="@+id/search_edit_text"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/edittext_rectangle"
                     android:gravity="center"
-                    android:hint="Search" />
+                    android:hint="search"
+                    android:inputType="text"/>
 
                 <ImageButton
                     android:id="@+id/filter"
@@ -46,6 +48,7 @@
                     app:srcCompat="@drawable/baseline_tune_24" />
 
                 <android.widget.Button
+                    android:id="@+id/search_button"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginLeft="10dp"
