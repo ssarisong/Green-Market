@@ -69,43 +69,80 @@
                     android:id="@+id/tv_title2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
-                    android:text="제목" />
+                    android:text="제목"
+                    android:textSize="22sp"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_product_detail2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/edittext_rectangle"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="1dp"
                 android:inputType="textMultiLine"
                 android:lines="5"
-                android:text="상품설명" />
+                android:text="상품설명"
+                android:textSize="16sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#D3D3D3" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_price2"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="가격" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
 
-                <android.widget.Button
-                    android:id="@+id/btn_chatting"
+                    <TextView
+                        android:id="@+id/tv_price2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="가격"
+                        android:textColor="#414141"
+                        android:textStyle="bold"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/tv_won"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="원"
+                        android:textColor="#414141"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:layout_marginLeft="1dp"/>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/setting_button"
-                    android:text="채팅하기"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"></android.widget.Button>
+                    android:orientation="horizontal">
+
+                    <android.widget.Button
+                        android:id="@+id/btn_chatting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/setting_button"
+                        android:text="채팅하기"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+
+    </LinearLayout>
     </ScrollView>
 
 
@@ -118,5 +155,5 @@
         app:itemIconTint="#FFFFFF"
         app:itemTextColor="#f6d170"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_menu"/>
+        app:menu="@menu/bottom_menu" />
 </RelativeLayout>
