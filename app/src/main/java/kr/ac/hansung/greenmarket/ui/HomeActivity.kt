@@ -24,15 +24,20 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         val productUtil = FirebaseProductUtil()
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         searchEditText = findViewById(R.id.search_edit_text)
 
-        productUtil.getAllProducts() {STATUS_CODE, productList ->
-            if(STATUS_CODE==StatusCode.SUCCESS){
-                recyclerView.adapter = ProductAdapter(this, productList?: emptyList<Product>())
+        productUtil.getAllProducts { STATUS_CODE, productList ->
+            if (STATUS_CODE == StatusCode.SUCCESS) {
+                val filteredList = productList?.filter { product ->
+                    isFilterChecked("판매중", product.stateCode) ||
+                            isFilterChecked("예약중", product.stateCode) ||
+                            isFilterChecked("판매 완료", product.stateCode)
+                }
+                recyclerView.adapter = ProductAdapter(this, filteredList ?: emptyList())
             }
         }
+
 
         val layoutManager = GridLayoutManager(this, 2) // 2는 한 줄에 표시되는 아이템 수
         recyclerView.layoutManager = layoutManager
@@ -85,12 +90,10 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    private var selectedFilters = booleanArrayOf(true, true, true)
     private fun showFilterDialog() {
-        val items = arrayOf(
-            "판매중", "예약중", "판매 완료"
-        )
-
-        val checkedItems = BooleanArray(items.size)
+        val items = arrayOf("판매중", "예약중", "판매 완료")
+        val checkedItems = selectedFilters.copyOf()
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("검색 필터")
@@ -98,17 +101,21 @@ class HomeActivity : AppCompatActivity() {
                 checkedItems[which] = isChecked
             }
             .setPositiveButton("확인") { dialog, _ ->
-                val selectedFilters = mutableListOf<String>()
-                for (i in items.indices) {
-                    if (checkedItems[i]) {
-                        selectedFilters.add(items[i])
+                selectedFilters = checkedItems.copyOf()
+
+                val productUtil = FirebaseProductUtil()
+                val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+
+                productUtil.getAllProducts { STATUS_CODE, productList ->
+                    if (STATUS_CODE == StatusCode.SUCCESS) {
+                        val filteredList = productList?.filter { product ->
+                            isFilterChecked("판매중", product.stateCode) && selectedFilters[0] ||
+                                    isFilterChecked("예약중", product.stateCode) && selectedFilters[1] ||
+                                    isFilterChecked("판매 완료", product.stateCode) && selectedFilters[2]
+                        }
+                        recyclerView.adapter = ProductAdapter(this, filteredList ?: emptyList())
                     }
                 }
-                Toast.makeText(
-                    this,
-                    "${selectedFilters.joinToString(", ")} 상품만 표시됩니다.",
-                    Toast.LENGTH_SHORT
-                ).show()
 
                 dialog.dismiss()
             }
@@ -119,5 +126,13 @@ class HomeActivity : AppCompatActivity() {
         builder.create().show()
     }
 
+    private fun isFilterChecked(filter: String, statusCode: Int): Boolean {
+        return when (filter) {
+            "판매중" -> statusCode == 0
+            "예약중" -> statusCode == 1
+            "판매 완료" -> statusCode == 2
+            else -> false
+        }
+    }
 
 }
