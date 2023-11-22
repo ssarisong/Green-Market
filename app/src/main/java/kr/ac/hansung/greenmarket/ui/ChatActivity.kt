@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
@@ -35,27 +36,33 @@ class ChatActivity : AppCompatActivity() {
 
         chatRoomId = intent.getStringExtra("chatRoomId") ?: ""
 
-
         val btnQuit = findViewById<ImageButton>(R.id.btn_quit)
         val btnSubmit = findViewById<Button>(R.id.btn_submit)
         val edtMessage = findViewById<EditText>(R.id.edt_message)
+        val txtTitle = findViewById<TextView>(R.id.txt_Title)
+
+        // 사용자의 이름을 가져와서 txt_Title TextView에 설정
+        firebaseUserUtil.getUserName(firebaseUserUtil.whoAmI()?.uid ?: "") { userName ->
+            runOnUiThread {
+                txtTitle.text = userName ?: "사용자 이름 없음"
+            }
+        }
 
         recyclerView = findViewById(R.id.recycler_messages)
         recyclerView.layoutManager = LinearLayoutManager(this)
         chatAdapter = ChatAdapter(mutableListOf(), firebaseUserUtil.whoAmI()?.uid ?: "")
         recyclerView.adapter = chatAdapter
 
-        chatRoomId = intent.getStringExtra("chatRoomId") ?: ""
-
-
         val messageListener = firebaseChattingUtil.listenForMessages(chatRoomId) { status, messages ->
-            if (status == StatusCode.SUCCESS) {
-                messages?.let {
-                    chatAdapter.addChatList(it)
-                    recyclerView.scrollToPosition(chatAdapter.itemCount - 1)
+            runOnUiThread {
+                if (status == StatusCode.SUCCESS) {
+                    messages?.let {
+                        chatAdapter.addChatList(it)
+                        recyclerView.scrollToPosition(chatAdapter.itemCount - 1)
+                    }
+                } else {
+                    Toast.makeText(this, "Failed to listen for messages", Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Toast.makeText(this, "Failed to listen for messages", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -74,10 +81,12 @@ class ChatActivity : AppCompatActivity() {
             val message = edtMessage.text.toString().trim()
             if (message.isNotEmpty()) {
                 firebaseChattingUtil.sendMessage(firebaseUserUtil.whoAmI()?.uid ?: "", chatRoomId, message) { statusCode ->
-                    if (statusCode == StatusCode.SUCCESS) {
-                        edtMessage.text.clear()
-                    } else {
-                        Toast.makeText(this, "Failed to send message", Toast.LENGTH_SHORT).show()
+                    runOnUiThread {
+                        if (statusCode == StatusCode.SUCCESS) {
+                            edtMessage.text.clear()
+                        } else {
+                            Toast.makeText(this, "Failed to send message", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             }
