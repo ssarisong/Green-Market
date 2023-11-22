@@ -48,9 +48,9 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginBottom="5dp"
                 android:background="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="@+id/txt_TItle"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_Title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/txt_TItle"
+                app:layout_constraintTop_toTopOf="@+id/txt_Title"
                 app:srcCompat="@android:drawable/ic_menu_revert"
                 tools:ignore="TouchTargetSizeCheck" />
 

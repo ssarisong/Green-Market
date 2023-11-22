@@ -8,7 +8,7 @@
     android:background="@color/white">
 
     <TextView
-        android:id="@+id/txt_TItle"
+        android:id="@+id/txt_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -24,9 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_TItle"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_Title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txt_TItle"
+        app:layout_constraintTop_toTopOf="@+id/txt_Title"
         app:srcCompat="@android:drawable/ic_menu_revert"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -42,7 +42,7 @@
         android:text="오늘"
         app:layout_constraintEnd_toStartOf="@+id/divider_right"
         app:layout_constraintStart_toEndOf="@+id/divider_left"
-        app:layout_constraintTop_toBottomOf="@+id/txt_TItle" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_Title" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/divider_left"

@@ -82,10 +82,33 @@ class HomeActivity : AppCompatActivity() {
         val searchButton = findViewById<Button>(R.id.search_button)
 
         searchButton.setOnClickListener {
-            // 검색 버튼을 클릭한 경우, 검색어를 이용하여 데이터를 필터링하거나 처리할 로직을 추가할 수 있습니다.
             val searchQuery = searchEditText.text.toString().trim()
+
             if (searchQuery.isNotEmpty()) {
-//                Toast.makeText(this, "검색어: $searchQuery", Toast.LENGTH_SHORT).show() // 확인용..
+                val productUtil = FirebaseProductUtil()
+                val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+
+                productUtil.getAllProducts { STATUS_CODE, productList ->
+                    if (STATUS_CODE == StatusCode.SUCCESS) {
+                        // 제품명 또는 상세정보가 검색어와 일치하는 상품만 필터링
+                        val filteredList = productList?.filter { product ->
+                            product.name.contains(searchQuery, ignoreCase = true) ||
+                                    product.detail.contains(searchQuery, ignoreCase = true)
+                        }
+                        recyclerView.adapter = ProductAdapter(this, filteredList ?: emptyList())
+                    }
+                }
+            } else {
+                // 검색어가 비어있으면 모든 상품을 표시
+                val productUtil = FirebaseProductUtil()
+                val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+
+                productUtil.getAllProducts { STATUS_CODE, productList ->
+                    if (STATUS_CODE == StatusCode.SUCCESS) {
+                        val filteredList = productList ?: emptyList()
+                        recyclerView.adapter = ProductAdapter(this, filteredList)
+                    }
+                }
             }
         }
     }
