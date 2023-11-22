@@ -33,5 +33,6 @@
         <activity android:name=".ui.NewPostActivity" />
         <activity android:name=".ui.ProductDetailActivity" />
         <activity android:name=".ui.MypostListActivity" />
+        <activity android:name=".ui.RePostActivity" />
     </application>
 </manifest>

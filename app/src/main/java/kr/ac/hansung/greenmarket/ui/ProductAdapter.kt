@@ -70,12 +70,19 @@ class ProductAdapter(private val context: Context, private val productList: List
             .load(product.img)
             .into(holder.itemView.findViewById<ImageView>(R.id.img_product))
 
-        // 추가: itemView 클릭 리스너 설정
+        // item 클릭 리스너 설정
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, ProductDetailActivity::class.java)
-            // 클릭한 제품의 정보를 전달
-            intent.putExtra("productId", product.productId)
-            context.startActivity(intent)
+            val intent = when (context) {
+                is HomeActivity -> Intent(context, ProductDetailActivity::class.java)
+                is MypostListActivity -> Intent(context, RePostActivity::class.java)
+                else -> null
+            }
+
+            intent?.let {
+                // 클릭한 제품의 정보를 전달
+                intent.putExtra("productId", product.productId)
+                context.startActivity(intent)
+            }
         }
     }
     override fun getItemCount(): Int {

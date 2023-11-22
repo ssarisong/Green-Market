@@ -2,6 +2,7 @@ package kr.ac.hansung.greenmarket.utils
 
 import android.util.Log
 import com.google.firebase.Timestamp
+import com.google.firebase.firestore.FirebaseFirestore
 import kr.ac.hansung.greenmarket.StatusCode
 import kr.ac.hansung.greenmarket.models.FirestoreProductModel
 import kr.ac.hansung.greenmarket.models.Product
@@ -101,5 +102,37 @@ class FirebaseProductUtil {
                 callback(StatusCode.FAILURE, null)
             }
         }
+    }
+
+    private val firestore = FirebaseFirestore.getInstance()
+
+    // 상품 업데이트 함수
+    fun updateProduct(
+        productId: String,
+        updatedTitle: String,
+        updatedDetail: String,
+        updatedPrice: Double,
+        updatedStateCode: Int,
+        onComplete: (Boolean) -> Unit
+    ) {
+        val productRef = firestore.collection("products").document(productId)
+
+        // 업데이트할 데이터 생성
+        val updatedData = hashMapOf(
+            "name" to updatedTitle,
+            "detail" to updatedDetail,
+            "price" to updatedPrice,
+            "stateCode" to updatedStateCode
+        )
+        val updatedDataMap: Map<String, Any> = updatedData
+
+        // Firestore 문서 업데이트
+        productRef.update(updatedDataMap)
+            .addOnSuccessListener {
+                onComplete(true)
+            }
+            .addOnFailureListener {
+                onComplete(false)
+            }
     }
 }

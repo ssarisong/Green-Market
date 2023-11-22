@@ -51,42 +51,46 @@
                 android:text="제목"></TextView>
 
             <EditText
+                android:id="@+id/editTitle"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginTop="8dp"
                 android:hint="제목을 입력하세요." />
+
+            <TextView
+                android:layout_width="136dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="이미지 미리보기"></TextView>
+
+            <ImageView
+                android:id="@+id/img_main2"
+                android:layout_width="match_parent"
+                android:layout_height="101dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="fitCenter" />
 
             <android.widget.Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="사진 첨부"
-                android:layout_marginTop="16dp"></android.widget.Button>
+                android:layout_marginTop="8dp"></android.widget.Button>
 
             <TextView
                 android:layout_width="136dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:text="이미지 미리보기"></TextView>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="101dp"
                 android:layout_marginTop="16dp"
-                android:scaleType="fitCenter" />
-
-
-            <TextView
-                android:layout_width="136dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:text="상품 설명"></TextView>
 
             <EditText
+                android:id="@+id/editProductDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:hint="내용을 입력하세요"
                 android:inputType="textMultiLine"
                 android:background="@drawable/edittext_rectangle"
@@ -95,22 +99,69 @@
             <TextView
                 android:layout_width="136dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="16dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:text="거래 희망 장소"></TextView>
+                android:text="가격"></TextView>
 
             <EditText
+                android:id="@+id/editPrice"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:hint="가격을 입력하세요" />
+
+            <TextView
+                android:layout_width="136dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
-                android:hint="위치 추가" />
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="상태"></TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/statusTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="판매중"
+                    android:textSize="16sp"
+                    android:onClick="showStatusDialog" />
+
+                <android.widget.Button
+                    android:id="@+id/btnChangeStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/setting_button"
+                    android:text="상태 변경"
+                    android:textColor="#FFFFFF"
+                    android:onClick="showStatusDialog"></android.widget.Button>
+            </LinearLayout>
 
             <android.widget.Button
+                android:id="@+id/btnUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="수정 완료"
                 android:layout_marginTop="16dp"></android.widget.Button>
+
+            <android.widget.Button
+                android:id="@+id/btnDelete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="글 삭제"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#FFA500"></android.widget.Button>
         </LinearLayout>
     </ScrollView>
 
