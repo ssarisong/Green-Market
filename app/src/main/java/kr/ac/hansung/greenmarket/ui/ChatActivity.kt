@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
@@ -39,6 +40,7 @@ class ChatActivity : AppCompatActivity() {
         val btnQuit = findViewById<ImageButton>(R.id.btn_quit)
         val btnSubmit = findViewById<Button>(R.id.btn_submit)
         val edtMessage = findViewById<EditText>(R.id.edt_message)
+        val partnerName = findViewById<TextView>(R.id.txt_Title)
 
         recyclerView = findViewById(R.id.recycler_messages)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -46,6 +48,20 @@ class ChatActivity : AppCompatActivity() {
         recyclerView.adapter = chatAdapter
 
         chatRoomId = intent.getStringExtra("chatRoomId") ?: ""
+
+        firebaseChattingUtil.whoIsMyPartner(chatRoomId, firebaseUserUtil.whoAmI()?.uid ?: "") { partnerId ->
+            if (partnerId != null) {
+                firebaseUserUtil.getUser(partnerId) {STATUS_CODE, partner ->
+                    if (STATUS_CODE == StatusCode.SUCCESS){
+                        partnerName.text = partner?.name ?: ""
+                    } else {
+                        partnerName.text = ""
+                    }
+                }
+            } else {
+                partnerName.text = ""
+            }
+        }
 
 
         val messageListener = firebaseChattingUtil.listenForMessages(chatRoomId) { status, messages ->
