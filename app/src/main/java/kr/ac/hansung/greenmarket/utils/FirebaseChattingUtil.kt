@@ -118,26 +118,4 @@ class FirebaseChattingUtil {
             }
         }
     }
-
-    fun getPartnerName(chatRoomId: String, currentUserId: String, callback: (String?) -> Unit) {
-        // Logic to determine the partner's UID based on the current user's UID and chatRoomId
-        val partnerUid = determinePartnerUid(chatRoomId, currentUserId)
-
-        if (partnerUid != null) {
-            FirebaseUserUtil().getUserName(partnerUid) { partnerName ->
-                callback(partnerName)
-            }
-        } else {
-            callback(null)
-        }
-    }
-
-    // Additional function to determine the partner's UID
-    private fun determinePartnerUid(chatRoomId: String, currentUserId: String): String? {
-        // Implement logic to determine the partner's UID based on the chat room ID and current user's UID
-        // You might have this logic implemented elsewhere in your code
-        // Return the partner's UID or null if not found
-        // Example: return chatRoomId.substringAfter("_").removeSuffix(currentUserId)
-        return null
-    }
 }

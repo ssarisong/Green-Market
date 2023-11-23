@@ -123,4 +123,19 @@ class FirestoreProductModel {
                 }
             }
     }
+
+    fun updateProduct(productId: String, updatedTitle: String, updatedDetail: String, updatedPrice: Double, updatedStateCode: Int, callback: (Int) -> Unit) {
+        val productRef = db.collection("Product").document(productId)
+
+        val updatedData = hashMapOf("name" to updatedTitle, "detail" to updatedDetail, "price" to updatedPrice, "stateCode" to updatedStateCode)
+        val updatedDataMap: Map<String, Any> = updatedData
+
+        productRef.update(updatedDataMap)
+            .addOnSuccessListener {
+                callback(StatusCode.SUCCESS)
+            }
+            .addOnFailureListener {
+                callback(StatusCode.FAILURE)
+            }
+    }
 }
