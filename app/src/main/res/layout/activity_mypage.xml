@@ -43,9 +43,9 @@
                     android:id="@+id/btn_name"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:scaleType="fitXY"
                     android:contentDescription="사용자 프로필 이미지"
-                    tools:src="@android:drawable/ic_menu_gallery" />
+                    android:scaleType="fitXY"
+                    android:src="@drawable/baseline_person_24" />
 
                 <TextView
                     android:id="@+id/text_name"
@@ -68,7 +68,7 @@
                     android:layout_height="100dp"
                     android:contentDescription="."
                     android:scaleType="fitXY"
-                    tools:src="?attr/actionModePasteDrawable" />
+                    android:src="?attr/actionModePasteDrawable" />
 
                 <TextView
                     android:id="@+id/text_mypost"
@@ -92,7 +92,7 @@
                     android:layout_height="100dp"
                     android:contentDescription="."
                     android:scaleType="fitXY"
-                    tools:src="@android:drawable/ic_menu_close_clear_cancel"  />
+                    android:src="@android:drawable/ic_menu_close_clear_cancel" />
 
                 <TextView
                     android:id="@+id/text_logout"
