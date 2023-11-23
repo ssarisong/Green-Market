@@ -3,6 +3,7 @@ package kr.ac.hansung.greenmarket.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -55,6 +56,10 @@ class ChatlistActivity : AppCompatActivity() {
         recyclerView = findViewById<RecyclerView>(R.id.recycler_chatlist)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        // 구분선 추가
+        val dividerItemDecoration = DividerItemDecoration(recyclerView.context, LinearLayoutManager.VERTICAL)
+        recyclerView.addItemDecoration(dividerItemDecoration)
+
         chatListAdapter = ChatListAdapter(chatRoomList) { clickedChatRoom ->
             // 채팅방 클릭 시의 행동을 정의
             val intent = Intent(this, ChatActivity::class.java)
@@ -63,6 +68,7 @@ class ChatlistActivity : AppCompatActivity() {
         }
         recyclerView.adapter = chatListAdapter
     }
+
 
     private fun loadChatRooms() {
         userUtil.whoAmI()?.let { user ->
