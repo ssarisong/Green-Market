@@ -1,5 +1,6 @@
 package kr.ac.hansung.greenmarket.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -36,33 +37,41 @@ class ChatActivity : AppCompatActivity() {
 
         chatRoomId = intent.getStringExtra("chatRoomId") ?: ""
 
+
         val btnQuit = findViewById<ImageButton>(R.id.btn_quit)
         val btnSubmit = findViewById<Button>(R.id.btn_submit)
         val edtMessage = findViewById<EditText>(R.id.edt_message)
-        val txtTitle = findViewById<TextView>(R.id.txt_Title)
-
-        // 사용자의 이름을 가져와서 txt_Title TextView에 설정
-        firebaseUserUtil.getUserName(firebaseUserUtil.whoAmI()?.uid ?: "") { userName ->
-            runOnUiThread {
-                txtTitle.text = userName ?: "사용자 이름 없음"
-            }
-        }
+        val partnerName = findViewById<TextView>(R.id.txt_Title)
 
         recyclerView = findViewById(R.id.recycler_messages)
         recyclerView.layoutManager = LinearLayoutManager(this)
         chatAdapter = ChatAdapter(mutableListOf(), firebaseUserUtil.whoAmI()?.uid ?: "")
         recyclerView.adapter = chatAdapter
 
-        val messageListener = firebaseChattingUtil.listenForMessages(chatRoomId) { status, messages ->
-            runOnUiThread {
-                if (status == StatusCode.SUCCESS) {
-                    messages?.let {
-                        chatAdapter.addChatList(it)
-                        recyclerView.scrollToPosition(chatAdapter.itemCount - 1)
+        chatRoomId = intent.getStringExtra("chatRoomId") ?: ""
+
+        firebaseChattingUtil.whoIsMyPartner(chatRoomId, firebaseUserUtil.whoAmI()?.uid ?: "") { partnerId ->
+            if (partnerId != null) {
+                firebaseUserUtil.getUser(partnerId) {STATUS_CODE, partner ->
+                    if (STATUS_CODE == StatusCode.SUCCESS){
+                        partnerName.text = partner?.name ?: ""
+                    } else {
+                        partnerName.text = ""
                     }
-                } else {
-                    Toast.makeText(this, "Failed to listen for messages", Toast.LENGTH_SHORT).show()
                 }
+            } else {
+                partnerName.text = ""
+            }
+        }
+
+        val messageListener = firebaseChattingUtil.listenForMessages(chatRoomId) { status, messages ->
+            if (status == StatusCode.SUCCESS) {
+                messages?.let {
+                    chatAdapter.addChatList(it)
+                    recyclerView.scrollToPosition(chatAdapter.itemCount - 1)
+                }
+            } else {
+                Toast.makeText(this, "Failed to listen for messages", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -81,12 +90,10 @@ class ChatActivity : AppCompatActivity() {
             val message = edtMessage.text.toString().trim()
             if (message.isNotEmpty()) {
                 firebaseChattingUtil.sendMessage(firebaseUserUtil.whoAmI()?.uid ?: "", chatRoomId, message) { statusCode ->
-                    runOnUiThread {
-                        if (statusCode == StatusCode.SUCCESS) {
-                            edtMessage.text.clear()
-                        } else {
-                            Toast.makeText(this, "Failed to send message", Toast.LENGTH_SHORT).show()
-                        }
+                    if (statusCode == StatusCode.SUCCESS) {
+                        edtMessage.text.clear()
+                    } else {
+                        Toast.makeText(this, "Failed to send message", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

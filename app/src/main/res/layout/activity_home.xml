@@ -37,7 +37,7 @@
                     android:background="@drawable/edittext_rectangle"
                     android:gravity="center"
                     android:hint="search"
-                    android:inputType="text"/>
+                    android:inputType="text" />
 
                 <ImageButton
                     android:id="@+id/filter"
@@ -59,41 +59,48 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                app:spanCount="2"
+                android:layout_marginBottom="30dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                app:spanCount="2">
 
+            </androidx.recyclerview.widget.RecyclerView>
 
-            <android.widget.Button
-                android:id="@+id/write_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/setting_button"
-                android:text="상품등록"
-                android:textColor="@color/white"
-                android:textSize="12sp"></android.widget.Button>
         </LinearLayout>
+
+        <android.widget.Button
+            android:id="@+id/write_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="100dp"
+            android:layout_weight="1"
+            android:background="@drawable/setting_button"
+            android:text="상품등록"
+            android:textColor="@color/white"
+            android:textSize="12sp"></android.widget.Button>
+
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
         android:layout_alignParentBottom="true"
         android:background="#018340"
         app:itemIconTint="#FFFFFF"
