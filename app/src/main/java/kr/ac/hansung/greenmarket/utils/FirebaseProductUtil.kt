@@ -2,6 +2,7 @@ package kr.ac.hansung.greenmarket.utils
 
 import android.util.Log
 import com.google.firebase.Timestamp
+import kr.ac.hansung.greenmarket.ProductStates
 import kr.ac.hansung.greenmarket.StatusCode
 import kr.ac.hansung.greenmarket.models.FirestoreProductModel
 import kr.ac.hansung.greenmarket.models.Product
@@ -25,7 +26,7 @@ class FirebaseProductUtil {
      * @param callback 상품 등록 성공 시 상태 코드(STATUS_CODE)와 상품의 ID를 인자로 받는 콜백 함수입니다.
      */
     fun createProduct(userId: String, productNm: String, productImg: String, productDetail: String, productPrice: Int, callback: (Int, String?) -> Unit) {
-        val product = Product("", userId, productNm, productImg, productDetail, productPrice, 0, Timestamp.now())
+        val product = Product("", userId, productNm, productImg, productDetail, productPrice, ProductStates.ON_SALE.code, Timestamp.now())
 
         productModel.insertProduct(product) { STATUS_CODE, pid ->
             if(STATUS_CODE == StatusCode.SUCCESS){
@@ -83,6 +84,31 @@ class FirebaseProductUtil {
             if(STATUS_CODE == StatusCode.SUCCESS){
                 callback(StatusCode.SUCCESS)
             } else{
+                callback(StatusCode.FAILURE)
+            }
+        }
+    }
+
+    /**
+     * 판매자의 ID를 사용하여 해당 판매자의 모든 판매 상품 목록을 가져옵니다.
+     *
+     * @param callback 상품 조회 성공 시 상태 코드(STATUS_CODE)와 해당 사용자가 등록한 상품 리스트를 인자로 받는 콜백 함수입니다.
+     */
+    fun getProductsBySellerId(sellerId: String, callback: (Int, List<Product>?) -> Unit) {
+        productModel.getProducts() {STATUS_CODE, products ->
+            if(STATUS_CODE == StatusCode.SUCCESS){
+                callback(StatusCode.SUCCESS, products?.filter { it.sellerId == sellerId })
+            } else{
+                callback(StatusCode.FAILURE, null)
+            }
+        }
+    }
+
+    fun updateProduct(productId: String, updatedTitle: String, updatedDetail: String, updatedPrice: Double, updatedStateCode: Int, callback: (Int) -> Unit) {
+        productModel.updateProduct(productId, updatedTitle, updatedDetail, updatedPrice, updatedStateCode) { STATUS_CODE ->
+            if(STATUS_CODE == StatusCode.SUCCESS){
+                callback(StatusCode.SUCCESS)
+            } else {
                 callback(StatusCode.FAILURE)
             }
         }

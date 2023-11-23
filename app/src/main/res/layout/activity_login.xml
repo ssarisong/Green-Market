@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="30dp"
     android:orientation="vertical"
-    android:paddingTop="100dp">
+    android:paddingTop="120dp">
 
     <ImageView
         android:id="@+id/logo"
@@ -58,8 +58,8 @@
             android:layout_height="50dp"
             android:background="@drawable/edittext_rectangle"
             android:hint="Password"
-            android:paddingLeft="10dp"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:paddingLeft="10dp" />
 
     </LinearLayout>
 
@@ -98,10 +98,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:text=""
         android:textColor="#FF0000"
         android:textSize="18sp"
-        android:visibility="gone"
-        android:layout_marginTop="10dp"/>
+        android:visibility="gone" />
 
 </LinearLayout>

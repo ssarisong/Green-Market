@@ -2,6 +2,7 @@ package kr.ac.hansung.greenmarket.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -31,6 +32,10 @@ class ProductDetailActivity : AppCompatActivity() {
                     Glide.with(this)
                         .load(product?.img)
                         .into(findViewById<ImageView>(R.id.img_main))
+
+                    val productStatusTextView = findViewById<TextView>(R.id.tv_product_status)
+                    val statusString = getProductStatusString(product?.stateCode ?: 0)
+                    productStatusTextView.text = statusString
                 }
             }
         }
@@ -42,6 +47,15 @@ class ProductDetailActivity : AppCompatActivity() {
         }
         chatButton.setOnClickListener {// 채팅하기 버튼
             startActivity(Intent(this, ChatActivity::class.java))
+        }
+    }
+
+    private fun getProductStatusString(stateCode: Int): String {
+        return when (stateCode) {
+            0 -> "판매중"
+            1 -> "예약중"
+            2 -> "판매 완료"
+            else -> "알 수 없는 상태"
         }
     }
 }

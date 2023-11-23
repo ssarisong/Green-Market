@@ -48,9 +48,9 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginBottom="5dp"
                 android:background="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="@+id/txt_TItle"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_Title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/txt_TItle"
+                app:layout_constraintTop_toTopOf="@+id/txt_Title"
                 app:srcCompat="@android:drawable/ic_menu_revert"
                 tools:ignore="TouchTargetSizeCheck" />
 
@@ -74,6 +74,14 @@
                     android:text="제목"
                     android:textSize="22sp"
                     android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_product_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TextView
