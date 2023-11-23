@@ -112,18 +112,6 @@ class FirebaseUserUtil{
         }
     }
 
-    // 사용자 이름 가져오기
-    fun getUserName(uid: String, callback: (String?) -> Unit) {
-        userModel.getUserDetail(uid) { statusCode, user ->
-            if (statusCode == StatusCode.SUCCESS) {
-                callback(user?.name)
-            } else {
-                callback(null)
-            }
-        }
-    }
-
-
     /**
      * 현재 로그인한 Firebase 사용자의 정보를 반환합니다.
      *
