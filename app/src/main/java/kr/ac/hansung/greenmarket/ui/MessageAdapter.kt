@@ -14,7 +14,6 @@ class MessageAdapter(var messages: List<Chat>) :
     class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val messageText: TextView = itemView.findViewById(R.id.txt_message)
         val dateText: TextView = itemView.findViewById(R.id.txt_date)
-        val isShownText: TextView = itemView.findViewById(R.id.txt_isShown)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
@@ -27,7 +26,6 @@ class MessageAdapter(var messages: List<Chat>) :
         val message = messages[position]
         holder.messageText.text = message.message
         holder.dateText.text = "오전 10:23" // 메시지의 시간 정보에 따라 변경
-        holder.isShownText.text = "1" // 메시지의 읽음 여부에 따라 변경
     }
 
     override fun getItemCount(): Int {

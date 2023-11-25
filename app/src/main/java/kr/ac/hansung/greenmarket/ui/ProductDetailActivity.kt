@@ -48,6 +48,8 @@ class ProductDetailActivity : AppCompatActivity() {
         chatButton.setOnClickListener {// 채팅하기 버튼
             startActivity(Intent(this, ChatActivity::class.java))
         }
+
+
     }
 
     private fun getProductStatusString(stateCode: Int): String {
