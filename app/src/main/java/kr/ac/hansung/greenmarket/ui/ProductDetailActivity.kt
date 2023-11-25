@@ -7,21 +7,26 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import kr.ac.hansung.greenmarket.R
 import kr.ac.hansung.greenmarket.StatusCode
+import kr.ac.hansung.greenmarket.utils.FirebaseChattingUtil
 import kr.ac.hansung.greenmarket.utils.FirebaseProductUtil
+import kr.ac.hansung.greenmarket.utils.FirebaseUserUtil
 
 class ProductDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
 
+        val userUtil = FirebaseUserUtil()
         val productUtil = FirebaseProductUtil()
+        val chatUtil = FirebaseChattingUtil()
 
         // 클릭한 제품의 정보 받아오기
-        val productId = intent.getStringExtra("productId")
+        val productId = intent.getStringExtra("productId")?:""
 
         if (productId != null) {
             productUtil.getProductById(productId) { STATUS_CODE, product ->
@@ -46,7 +51,21 @@ class ProductDetailActivity : AppCompatActivity() {
             startActivity(Intent(this, HomeActivity::class.java))
         }
         chatButton.setOnClickListener {// 채팅하기 버튼
-            startActivity(Intent(this, ChatActivity::class.java))
+            productUtil.getProductById(productId) { STATUS_CODE, product ->
+                if(STATUS_CODE == StatusCode.SUCCESS){
+                    chatUtil.createChatRoom(productId = productId?:"", buyerId = userUtil.whoAmI()?.uid?:"", sellerId = product?.sellerId ?:"") { STATUS_CODE, newChatRoomId ->
+                        if(STATUS_CODE == StatusCode.SUCCESS){
+                            val intent = Intent(this, ChatActivity::class.java)
+                            intent.putExtra("chatRoomId", newChatRoomId)
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(this, "채팅방 생성 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } else {
+                    Toast.makeText(this, "채팅방 생성 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
 
