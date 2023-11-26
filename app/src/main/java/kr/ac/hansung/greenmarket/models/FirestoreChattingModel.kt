@@ -55,6 +55,7 @@ class FirestoreChattingModel {
             val distinctChatRooms = allRooms
                 .distinctBy { it.second }
                 .map { it.first }
+                .sortedByDescending { it.lastMessageAt }
 
             Log.d("firestoreChattingModel", "[$userId] 사용자의 채팅방 목록 불러오기 완료")
             StatusCode.SUCCESS to distinctChatRooms
@@ -209,5 +210,47 @@ class FirestoreChattingModel {
                     callback(StatusCode.FAILURE, null, null)
                 }
             }
+    }
+
+    /**
+     * 두 사용자가 참여하는 채팅방을 조회합니다.
+     *
+     * @param userId 첫 번째 사용자의 ID.
+     * @param partnerId 두 번째 사용자의 ID.
+     * @return 채팅방이 존재하면 StatusCode.SUCCESS와 해당 채팅방의 ID를,
+     *         존재하지 않으면 StatusCode.SUCCESS와 null을,
+     *         오류가 발생하면 StatusCode.FAILURE와 null을 반환합니다.
+     */
+    suspend fun getChatRoomIdBetweenUsers(userId: String, partnerId: String): Pair<Int, String?> = withContext(Dispatchers.IO) {
+        try {
+            val chatRooms = db.collection("ChatRoom")
+                .whereEqualTo("sellerId", userId)
+                .whereEqualTo("buyerId", partnerId)
+                .get()
+                .await()
+                .documents
+
+            if (chatRooms.isNotEmpty()) {
+                return@withContext StatusCode.SUCCESS to chatRooms.first().id
+            }
+
+            // userId와 partnerId의 위치를 바꿔서 검색
+            val chatRoomsReversed = db.collection("ChatRoom")
+                .whereEqualTo("sellerId", partnerId)
+                .whereEqualTo("buyerId", userId)
+                .get()
+                .await()
+                .documents
+
+            if (chatRoomsReversed.isNotEmpty()) {
+                return@withContext StatusCode.SUCCESS to chatRoomsReversed.first().id
+            }
+
+            // 채팅방이 존재하지 않는 경우, 성공적으로 조회했으나 찾지 못한 것으로 간주
+            StatusCode.SUCCESS to null
+        } catch (e: Exception) {
+            Log.w("FirestoreChattingModel", "[$userId]와 [$partnerId] 사이의 채팅방 조회 실패!!! -> ", e)
+            StatusCode.FAILURE to null
+        }
     }
 }
