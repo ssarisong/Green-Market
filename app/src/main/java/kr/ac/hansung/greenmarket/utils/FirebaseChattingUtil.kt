@@ -118,4 +118,8 @@ class FirebaseChattingUtil {
             }
         }
     }
+
+    suspend fun checkChatroomAlreadyExist(userId: String, partnerId: String): Pair<Int, String?> {
+        return chattingModel.getChatRoomIdBetweenUsers(userId, partnerId)
+    }
 }

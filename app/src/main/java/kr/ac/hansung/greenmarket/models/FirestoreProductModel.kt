@@ -61,14 +61,35 @@ class FirestoreProductModel {
      * @param callback 상품 삭제 결과에 대한 상태 코드(STATUS_CODE)를 반환하는 콜백 함수입니다.
      */
     fun deleteproduct(pid: String, callback: (Int) -> Unit) {
-        db.collection("Product").document(pid).delete()
+        val imageRef = FirebaseStorage.getInstance().reference.child("Product/${pid}")
+        imageRef.metadata
             .addOnSuccessListener {
-                Log.d("FirestoreProductModel", "[${pid}] 상품 DB 정보 성공적으로 삭제")
-                callback(StatusCode.SUCCESS)
+                imageRef.delete()
+                    .addOnSuccessListener {
+                        db.collection("Product").document(pid).delete()
+                            .addOnSuccessListener {
+                                Log.d("FirestoreProductModel", "[${pid}] 상품 DB 정보 성공적으로 삭제")
+                                callback(StatusCode.SUCCESS)
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w("FirestoreProductModel", "[${pid}] 상품 DB 정보 삭제 중 에러 발생!!! -> ", e)
+                                callback(StatusCode.FAILURE)
+                            }
+                    } .addOnFailureListener { e ->
+                        Log.w("FirestoreProductModel", "[${pid}] 상품 이미지 Storage에서 삭제 중 에러 발생!!! -> ", e)
+                        callback(StatusCode.FAILURE)
+                    }
             }
-            .addOnFailureListener { e ->
-                Log.w("FirestoreProductModel", "[${pid}] 상품 DB 정보 삭제 중 에러 발생!!! -> ", e)
-                callback(StatusCode.FAILURE)
+            .addOnFailureListener {
+                db.collection("Product").document(pid).delete()
+                    .addOnSuccessListener {
+                        Log.d("FirestoreProductModel", "[${pid}] 상품 DB 정보 성공적으로 삭제")
+                        callback(StatusCode.SUCCESS)
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w("FirestoreProductModel", "[${pid}] 상품 DB 정보 삭제 중 에러 발생!!! -> ", e)
+                        callback(StatusCode.FAILURE)
+                    }
             }
     }
 

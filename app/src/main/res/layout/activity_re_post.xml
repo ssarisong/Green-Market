@@ -73,10 +73,11 @@
                 android:scaleType="fitCenter" />
 
             <android.widget.Button
+                android:id="@+id/img_upload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="사진 첨부"
-                android:layout_marginTop="8dp"></android.widget.Button>
+                android:layout_marginTop="8dp"
+                android:text="사진 첨부"></android.widget.Button>
 
             <TextView
                 android:layout_width="136dp"
