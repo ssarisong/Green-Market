@@ -9,8 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.launch
 import kr.ac.hansung.greenmarket.R
 import kr.ac.hansung.greenmarket.StatusCode
 import kr.ac.hansung.greenmarket.utils.FirebaseChattingUtil
@@ -54,31 +56,35 @@ class ProductDetailActivity : AppCompatActivity() {
         chatButton.setOnClickListener {  // 채팅하기 버튼
             productUtil.getProductById(productId) { STATUS_CODE, product ->
                 if (STATUS_CODE == StatusCode.SUCCESS) {
-                    chatUtil.getUserChatRooms(userUtil.whoAmI()?.uid ?: "") { chatRoomsStatus, chatRooms ->
-                        if (chatRoomsStatus == StatusCode.SUCCESS) {
-                            val existingChatRoom = chatRooms?.find { chatRoom ->
-                                chatRoom.productId == productId && (chatRoom.buyerId == userUtil.whoAmI()?.uid ?: "" || chatRoom.sellerId == product?.sellerId ?: "")
-                            }
-
-                            if (existingChatRoom != null) {
-                                // 존재하는 채팅방 불러오기
-                                val intent = Intent(this, ChatActivity::class.java)
-                                intent.putExtra("chatRoomId", existingChatRoom.chatRoomId)
-                                startActivity(intent)
-                            } else {
-                                // 채팅방 생성
-                                chatUtil.createChatRoom(productId = productId ?: "", buyerId = userUtil.whoAmI()?.uid ?: "", sellerId = product?.sellerId ?: "") { newChatRoomStatus, newChatRoomId ->
+                    lifecycleScope.launch {
+                        val checkChatRoom = chatUtil.checkChatroomAlreadyExist(
+                            userUtil.whoAmI()?.uid ?: "",
+                            product?.sellerId ?: ""
+                        )
+                        if (checkChatRoom.first == StatusCode.SUCCESS) {
+                            if (checkChatRoom.second == null) {
+                                chatUtil.createChatRoom(
+                                    productId = productId ?: "",
+                                    buyerId = userUtil.whoAmI()?.uid ?: "",
+                                    sellerId = product?.sellerId ?: ""
+                                ) { newChatRoomStatus, newChatRoomId ->
                                     if (newChatRoomStatus == StatusCode.SUCCESS) {
-                                        val intent = Intent(this, ChatActivity::class.java)
+                                        val intent = Intent(this@ProductDetailActivity, ChatActivity::class.java)
                                         intent.putExtra("chatRoomId", newChatRoomId)
                                         startActivity(intent)
                                     } else {
-                                        Toast.makeText(this, "채팅방 생성 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(
+                                            this@ProductDetailActivity,
+                                            "채팅방 생성 중 오류가 발생했습니다.",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
                                     }
                                 }
+                            } else {
+                                val intent = Intent(this@ProductDetailActivity, ChatActivity::class.java)
+                                intent.putExtra("chatRoomId", checkChatRoom.second)
+                                startActivity(intent)
                             }
-                        } else {
-                            Toast.makeText(this, "채팅방 목록을 가져오는 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
                         }
                     }
                 } else {
