@@ -2,7 +2,6 @@ package kr.ac.hansung.greenmarket.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -30,6 +29,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
         // 클릭한 제품의 정보 받아오기
         val productId = intent.getStringExtra("productId")?:""
+        val currentUserId = userUtil.whoAmI()?.uid ?: ""
 
         if (productId != null) {
             productUtil.getProductById(productId) { STATUS_CODE, product ->
@@ -56,34 +56,42 @@ class ProductDetailActivity : AppCompatActivity() {
         chatButton.setOnClickListener {  // 채팅하기 버튼
             productUtil.getProductById(productId) { STATUS_CODE, product ->
                 if (STATUS_CODE == StatusCode.SUCCESS) {
-                    lifecycleScope.launch {
-                        val checkChatRoom = chatUtil.checkChatroomAlreadyExist(
-                            userUtil.whoAmI()?.uid ?: "",
-                            product?.sellerId ?: ""
-                        )
-                        if (checkChatRoom.first == StatusCode.SUCCESS) {
-                            if (checkChatRoom.second == null) {
-                                chatUtil.createChatRoom(
-                                    productId = productId ?: "",
-                                    buyerId = userUtil.whoAmI()?.uid ?: "",
-                                    sellerId = product?.sellerId ?: ""
-                                ) { newChatRoomStatus, newChatRoomId ->
-                                    if (newChatRoomStatus == StatusCode.SUCCESS) {
-                                        val intent = Intent(this@ProductDetailActivity, ChatActivity::class.java)
-                                        intent.putExtra("chatRoomId", newChatRoomId)
-                                        startActivity(intent)
-                                    } else {
-                                        Toast.makeText(
-                                            this@ProductDetailActivity,
-                                            "채팅방 생성 중 오류가 발생했습니다.",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
+                    if (currentUserId== product!!.sellerId){
+                        Toast.makeText(this, "내가 올린 상품입니다.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        lifecycleScope.launch {
+                            val checkChatRoom = chatUtil.checkChatroomAlreadyExist(
+                                userId = currentUserId,
+                                partnerId = product?.sellerId ?: ""
+                            )
+                            if (checkChatRoom.first == StatusCode.SUCCESS) {
+                                if (checkChatRoom.second == null) {
+                                    chatUtil.createChatRoom(
+                                        productId = productId,
+                                        buyerId = currentUserId,
+                                        sellerId = product?.sellerId ?: ""
+                                    ) { newChatRoomStatus, newChatRoomId ->
+                                        if (newChatRoomStatus == StatusCode.SUCCESS) {
+                                            val intent = Intent(
+                                                this@ProductDetailActivity,
+                                                ChatActivity::class.java
+                                            )
+                                            intent.putExtra("chatRoomId", newChatRoomId)
+                                            startActivity(intent)
+                                        } else {
+                                            Toast.makeText(
+                                                this@ProductDetailActivity,
+                                                "채팅방 생성 중 오류가 발생했습니다.",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
                                     }
+                                } else {
+                                    val intent =
+                                        Intent(this@ProductDetailActivity, ChatActivity::class.java)
+                                    intent.putExtra("chatRoomId", checkChatRoom.second)
+                                    startActivity(intent)
                                 }
-                            } else {
-                                val intent = Intent(this@ProductDetailActivity, ChatActivity::class.java)
-                                intent.putExtra("chatRoomId", checkChatRoom.second)
-                                startActivity(intent)
                             }
                         }
                     }

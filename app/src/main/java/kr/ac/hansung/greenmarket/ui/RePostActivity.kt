@@ -1,6 +1,8 @@
 package kr.ac.hansung.greenmarket.ui
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -21,6 +23,7 @@ class RePostActivity : AppCompatActivity() {
     private lateinit var product: Product
     private lateinit var tempState: ProductStates
     private var productUtil: FirebaseProductUtil = FirebaseProductUtil()
+    private var selectedImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,12 +35,17 @@ class RePostActivity : AppCompatActivity() {
             productUtil.getProductById(productId) { statusCode, retrievedProduct ->
                 if (statusCode == StatusCode.SUCCESS && retrievedProduct != null) {
                     product = retrievedProduct
+                    selectedImageUri = Uri.parse(product.img)
                     tempState = ProductStates.values().first { it.code == product.stateCode }
                     updateUIWithProductInfo()
                 } else {
                     // 실패할 경우 처리
                 }
             }
+        }
+
+        findViewById<Button>(R.id.img_upload).setOnClickListener {
+            openImageChooser()
         }
 
         // 수정 완료 버튼 클릭 시
@@ -146,4 +154,23 @@ class RePostActivity : AppCompatActivity() {
         finish() // 현재 화면 종료
     }
 
+    private fun openImageChooser() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, RePostActivity.IMAGE_PICK_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == RePostActivity.IMAGE_PICK_CODE) {
+            selectedImageUri = data?.data
+            Glide.with(this)
+                .load(selectedImageUri)
+                .into(findViewById(R.id.img_main2))
+        }
+    }
+
+    companion object {
+        private const val IMAGE_PICK_CODE = 1000
+    }
 }
