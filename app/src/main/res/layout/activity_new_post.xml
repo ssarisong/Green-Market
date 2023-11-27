@@ -56,6 +56,13 @@
                 android:layout_height="48dp"
                 android:hint="제목을 입력하세요." />
 
+            <ImageView
+                android:id="@+id/img_main"
+                android:layout_width="match_parent"
+                android:layout_height="101dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="fitCenter" />
+
             <android.widget.Button
                 android:id="@+id/btn_addphoto"
                 android:layout_width="match_parent"
