@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kr.ac.hansung.greenmarket.R
 import kr.ac.hansung.greenmarket.StatusCode
@@ -98,7 +99,9 @@ class NewPostActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             selectedImageUri = data?.data
-            // 선택된 이미지 URI를 변수에 저장, 필요한 경우 ImageView에 표시
+            Glide.with(this)
+                .load(selectedImageUri)
+                .into(findViewById(R.id.img_main))
         }
     }
 
