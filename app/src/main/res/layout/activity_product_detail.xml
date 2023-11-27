@@ -60,6 +60,17 @@
                 android:layout_height="248dp"
                 tools:srcCompat="@color/black" />
 
+            <TextView
+                android:id="@+id/tv_seller_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="left|center_vertical|end"
+                android:layout_marginRight="16dp"
+                android:text=""
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -69,7 +80,7 @@
                     android:id="@+id/tv_title2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_weight="1"
                     android:text="제목"
                     android:textSize="22sp"
@@ -80,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
 

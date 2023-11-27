@@ -19,6 +19,7 @@ import kr.ac.hansung.greenmarket.utils.FirebaseProductUtil
 import kr.ac.hansung.greenmarket.utils.FirebaseUserUtil
 
 class ProductDetailActivity : AppCompatActivity() {
+    private val firebaseUserUtil = FirebaseUserUtil()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
@@ -30,10 +31,21 @@ class ProductDetailActivity : AppCompatActivity() {
         // 클릭한 제품의 정보 받아오기
         val productId = intent.getStringExtra("productId")?:""
         val currentUserId = userUtil.whoAmI()?.uid ?: ""
+        val tvSellerId = findViewById<TextView>(R.id.tv_seller_id)
 
         if (productId != null) {
             productUtil.getProductById(productId) { STATUS_CODE, product ->
                 if(STATUS_CODE==StatusCode.SUCCESS){
+                    val sellerId = product?.sellerId ?: ""
+
+                    firebaseUserUtil.getUser(sellerId) { userStatusCode, user ->
+                        if (userStatusCode == StatusCode.SUCCESS) {
+                            tvSellerId.text = "판매자: ${user?.name ?: "알 수 없음"}"
+                        } else {
+                            tvSellerId.text = "판매자 정보 없음"
+                        }
+                    }
+
                     findViewById<TextView>(R.id.tv_title2).text = product?.name ?: "로딩 실패"
                     findViewById<TextView>(R.id.tv_product_detail2).text = product?.detail ?: "로딩 실패"
                     findViewById<TextView>(R.id.tv_price2).text = product?.price.toString()
