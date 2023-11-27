@@ -145,7 +145,7 @@ class FirestoreProductModel {
             }
     }
 
-    fun updateProduct(productId: String, updatedTitle: String, updateImage: String, updatedDetail: String, updatedPrice: Double, updatedStateCode: Int, callback: (Int) -> Unit) {
+    fun updateProduct(productId: String, updatedTitle: String, updateImage: String, updatedDetail: String, updatedPrice: Int, updatedStateCode: Int, callback: (Int) -> Unit) {
         val productRef = db.collection("Product").document(productId)
         val imageRef = FirebaseStorage.getInstance().reference.child("Product/${productId}")
 

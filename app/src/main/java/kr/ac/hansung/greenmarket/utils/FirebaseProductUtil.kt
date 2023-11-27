@@ -104,7 +104,7 @@ class FirebaseProductUtil {
         }
     }
 
-    fun updateProduct(productId: String, updatedTitle: String, updateImage: String, updatedDetail: String, updatedPrice: Double, updatedStateCode: Int, callback: (Int) -> Unit) {
+    fun updateProduct(productId: String, updatedTitle: String, updateImage: String, updatedDetail: String, updatedPrice: Int, updatedStateCode: Int, callback: (Int) -> Unit) {
         productModel.updateProduct(productId, updatedTitle, updateImage, updatedDetail, updatedPrice, updatedStateCode) { STATUS_CODE ->
             if(STATUS_CODE == StatusCode.SUCCESS){
                 callback(StatusCode.SUCCESS)
