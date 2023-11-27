@@ -145,8 +145,52 @@ class FirestoreProductModel {
             }
     }
 
-    fun updateProduct(productId: String, updatedTitle: String, updatedDetail: String, updatedPrice: Double, updatedStateCode: Int, callback: (Int) -> Unit) {
+    fun updateProduct(productId: String, updatedTitle: String, updateImage: String, updatedDetail: String, updatedPrice: Double, updatedStateCode: Int, callback: (Int) -> Unit) {
         val productRef = db.collection("Product").document(productId)
+        val imageRef = FirebaseStorage.getInstance().reference.child("Product/${productId}")
+
+        imageRef.metadata
+            .addOnSuccessListener {
+                imageRef.delete().addOnSuccessListener {
+                    imageRef.putFile(Uri.parse(updateImage))
+                        .addOnSuccessListener {
+                            imageRef.downloadUrl.addOnSuccessListener { uri ->
+                                val updatedData = hashMapOf("name" to updatedTitle, "img" to uri.toString(), "detail" to updatedDetail, "price" to updatedPrice, "stateCode" to updatedStateCode)
+                                val updatedDataMap: Map<String, Any> = updatedData
+
+                                productRef.update(updatedDataMap)
+                                    .addOnSuccessListener {
+                                        Log.d("FirestoreProductModel", "Storage에 이미지 수정 후 상품 수정 성공")
+                                        callback(StatusCode.SUCCESS)
+                                    }
+                                    .addOnFailureListener { e->
+                                        Log.w("FirestoreProductModel", "Storage에 이미지 수정 후 상품 수정 실패!!! -> ", e)
+                                        callback(StatusCode.FAILURE)
+                                    }
+                            }
+                        }
+                }.addOnFailureListener { e->
+                    Log.w("FirestoreProductModel", "수정전 이미지 Storage에 삭제 실패!!! -> ", e)
+                }
+            }.addOnFailureListener {
+                imageRef.putFile(Uri.parse(updateImage))
+                    .addOnSuccessListener {
+                        imageRef.downloadUrl.addOnSuccessListener { uri ->
+                            val updatedData = hashMapOf("name" to updatedTitle, "img" to uri.toString(), "detail" to updatedDetail, "price" to updatedPrice, "stateCode" to updatedStateCode)
+                            val updatedDataMap: Map<String, Any> = updatedData
+
+                            productRef.update(updatedDataMap)
+                                .addOnSuccessListener {
+                                    Log.d("FirestoreProductModel", "Storage에 이미지가 없던 상품 수정 성공")
+                                    callback(StatusCode.SUCCESS)
+                                }
+                                .addOnFailureListener { e->
+                                    Log.w("FirestoreProductModel", "Storage에 이미지가 없던 상품 수정 실패!!! -> ", e)
+                                    callback(StatusCode.FAILURE)
+                                }
+                        }
+                    }
+            }
 
         val updatedData = hashMapOf("name" to updatedTitle, "detail" to updatedDetail, "price" to updatedPrice, "stateCode" to updatedStateCode)
         val updatedDataMap: Map<String, Any> = updatedData

@@ -59,6 +59,7 @@ class RePostActivity : AppCompatActivity() {
             productUtil.updateProduct(
                 productId = product.productId,
                 updatedTitle = updatedTitle,
+                updateImage = selectedImageUri.toString(),
                 updatedDetail = updatedDetail,
                 updatedPrice = updatedPrice,
                 updatedStateCode = updatedStateCode
