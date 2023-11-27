@@ -75,7 +75,8 @@
                 android:id="@+id/tv_price"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="가격을 입력하세요." />
+                android:hint="가격을 입력하세요."
+                android:inputType="numberSigned" />
 
 
 

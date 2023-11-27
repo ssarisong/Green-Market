@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kr.ac.hansung.greenmarket.R
@@ -56,19 +57,33 @@ class NewPostActivity : AppCompatActivity() {
             val price = findViewById<EditText>(R.id.tv_price).text.toString()
             val detail = findViewById<EditText>(R.id.et_detail).text.toString()
 
-            val intentProductDetail = Intent(this, ProductDetailActivity::class.java)
-            val intentHome = Intent(this, HomeActivity::class.java)
-            intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-
-            productUtil.createProduct(userUtil.whoAmI()?.uid?: "", title, selectedImageUri.toString(), detail, price.toInt()) { STATUS_CODE, newProductId ->
-                if(STATUS_CODE == StatusCode.SUCCESS){
-                    // 상품 등록이 성공한 경우
-                    intentProductDetail.putExtra("productId", newProductId)
-                    startActivity(intentProductDetail)
-                } else{
-                    // 상품 등록이 실패한 경우
-                    startActivity(intentHome)
+            if (title.isNotEmpty() && detail.isNotEmpty() && price.isNotEmpty() && selectedImageUri != null) {
+                try {
+                    val priceValue = price.toInt()
+                    if (priceValue >= 0 && priceValue <= Int.MAX_VALUE) {
+                        productUtil.createProduct(userUtil.whoAmI()?.uid?: "", title, selectedImageUri.toString(), detail, price.toInt()) { STATUS_CODE, newProductId ->
+                            if(STATUS_CODE == StatusCode.SUCCESS){
+                                // 상품 등록이 성공한 경우
+                                Toast.makeText(this, "상품 등록이 성공했습니다.", Toast.LENGTH_SHORT).show()
+                                val intentProductDetail = Intent(this, ProductDetailActivity::class.java)
+                                intentProductDetail.putExtra("productId", newProductId)
+                                startActivity(intentProductDetail)
+                            } else{
+                                // 상품 등록이 실패한 경우
+                                Toast.makeText(this, "알수없는 이유로 상품등록이 실패했습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    } else {
+                        // 가격 범위가 유효하지 않음
+                        Toast.makeText(this, "가격이 유효한 범위에 있지 않습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: NumberFormatException) {
+                    // 가격이 정수가 아님
+                    Toast.makeText(this, "유효한 가격을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 }
+            } else {
+                // 필드 중 하나 이상이 비어 있음
+                Toast.makeText(this, "모든 필수값을 입력하지 않았습니다.", Toast.LENGTH_SHORT).show()
             }
         }
     }

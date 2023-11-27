@@ -53,23 +53,32 @@ class RePostActivity : AppCompatActivity() {
             // 수정된 정보 가져오기
             val updatedTitle = findViewById<EditText>(R.id.editTitle).text.toString()
             val updatedDetail = findViewById<EditText>(R.id.editProductDetail).text.toString()
-            val updatedPrice = findViewById<EditText>(R.id.editPrice).text.toString().toDouble()
+            val updatedPrice = findViewById<EditText>(R.id.editPrice).text.toString()
             val updatedStateCode = tempState.code
 
-            productUtil.updateProduct(
-                productId = product.productId,
-                updatedTitle = updatedTitle,
-                updatedDetail = updatedDetail,
-                updatedPrice = updatedPrice,
-                updatedStateCode = updatedStateCode
-            ) { STATUS_CODE ->
-                if (STATUS_CODE == StatusCode.SUCCESS) {
-                    Toast.makeText(this, "상품이 업데이트되었습니다.", Toast.LENGTH_SHORT).show()
-                    navigateToMyPostList()
-                } else {
-                    Toast.makeText(this, "상품 업데이트에 실패했습니다.", Toast.LENGTH_SHORT).show()
-                    navigateToMyPostList()
+            if (updatedTitle.isNotEmpty() && updatedDetail.isNotEmpty() && updatedPrice.isNotEmpty() && selectedImageUri != null && updatedStateCode != null) {
+                try {
+                    val priceValue = updatedPrice.toInt()
+                    if (priceValue >= 0 && priceValue <= Int.MAX_VALUE) {
+                        productUtil.updateProduct(productId = product.productId, updatedTitle = updatedTitle, updateImage = selectedImageUri.toString(), updatedDetail = updatedDetail, updatedPrice = updatedPrice.toInt(), updatedStateCode = updatedStateCode) { STATUS_CODE ->
+                            if (STATUS_CODE == StatusCode.SUCCESS) {
+                                Toast.makeText(this, "상품이 수정되었습니다.", Toast.LENGTH_SHORT).show()
+                                navigateToMyPostList()
+                            } else {
+                                Toast.makeText(this, "알수없는 이유로 상품 수정이 실패했습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
+                                navigateToMyPostList()
+                            }
+                        }
+                    } else {
+                        // 가격 범위가 유효하지 않음
+                        Toast.makeText(this, "가격이 유효한 범위에 있지 않습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (e: NumberFormatException) {
+                    Toast.makeText(this, "유효한 가격을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 }
+            } else {
+                // 필드 중 하나 이상이 비어 있음
+                Toast.makeText(this, "모든 필수값을 입력하지 않았습니다.", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -82,7 +91,7 @@ class RePostActivity : AppCompatActivity() {
                     // 돌아갈 화면으로 이동
                     navigateToMyPostList()
                 } else {
-                    Toast.makeText(this, "상품 삭제에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "알수없는 이유로 상품 삭제에 실패했습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
         }

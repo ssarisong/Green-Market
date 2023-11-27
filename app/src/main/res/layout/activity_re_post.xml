@@ -110,7 +110,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="8dp"
-                android:hint="가격을 입력하세요" />
+                android:hint="가격을 입력하세요"
+                android:inputType="numberSigned" />
 
             <TextView
                 android:layout_width="136dp"
