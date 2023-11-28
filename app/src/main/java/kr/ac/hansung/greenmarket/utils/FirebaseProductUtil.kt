@@ -104,6 +104,17 @@ class FirebaseProductUtil {
         }
     }
 
+    /**
+     * 중고상품의 정보를 수정합니다.
+     *
+     * @param productId 상품의 고유 ID입니다.
+     * @param updatedTitle 수정된 상품의 이름입니다.
+     * @param updateImage 수정된 상품의 이미지 url입니다.
+     * @param updatedDetail 수정된 상품의 상세 정보입니다.
+     * @param updatedPrice 수정된 상품의 가격입니다.
+     * @param updatedStateCode 수정된 상품의 상태 코드입니다.
+     * @param callback 상품 정보 수정 상태 코드(STATUS_CODE)를 반환하는 콜백 함수입니다.
+     */
     fun updateProduct(productId: String, updatedTitle: String, updateImage: String, updatedDetail: String, updatedPrice: Int, updatedStateCode: Int, callback: (Int) -> Unit) {
         productModel.updateProduct(productId, updatedTitle, updateImage, updatedDetail, updatedPrice, updatedStateCode) { STATUS_CODE ->
             if(STATUS_CODE == StatusCode.SUCCESS){

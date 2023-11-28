@@ -119,6 +119,13 @@ class FirebaseChattingUtil {
         }
     }
 
+    /**
+     * 채팅방 생성 전 이미 채팅방이 만들어져 있는 대상인지 확인하고, 맞다면 이미 만들어져 있는 채팅방의 ID값을 불러옵니다.
+     *
+     * @param userId 현재 사용자의 ID입니다.
+     * @param partnerId 현재 채팅방을 만드려고 하는 파트너의 ID입니다.
+     * @return 조회 성공 여부 코드(first)와 채팅방이 있을 시 해당 채팅방 ID 없으면 null을 반환합니다.
+     */
     suspend fun checkChatroomAlreadyExist(userId: String, partnerId: String): Pair<Int, String?> {
         return chattingModel.getChatRoomIdBetweenUsers(userId, partnerId)
     }
