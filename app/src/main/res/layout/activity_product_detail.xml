@@ -103,7 +103,6 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="1dp"
                 android:inputType="textMultiLine"
-                android:lines="5"
                 android:text="상품설명"
                 android:textSize="16sp"/>
 
