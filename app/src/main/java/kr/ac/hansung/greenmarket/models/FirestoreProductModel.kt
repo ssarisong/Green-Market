@@ -4,6 +4,7 @@ import android.net.Uri
 import android.net.http.UrlRequest.Status
 import com.google.firebase.firestore.FirebaseFirestore
 import android.util.Log
+import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import kr.ac.hansung.greenmarket.StatusCode
 import java.util.UUID
@@ -124,7 +125,7 @@ class FirestoreProductModel {
      */
     fun getProducts(callback: (Int, List<Product>?) -> Unit) {
         db.collection("Product")
-            .orderBy("createdAt")
+            .orderBy("createdAt", Query.Direction.DESCENDING)
             .addSnapshotListener { querySnapshot, e ->
                 if (e != null) {
                     Log.w("FirestoreProductModel", "전체 상품 목록을 DB에서 불러오는 중 에러 발생!!! -> ", e)
