@@ -99,7 +99,7 @@ class JoinActivity : AppCompatActivity() {
                     if (STATUS_CODE == StatusCode.SUCCESS) {
                         // 회원가입 성공
                         startActivity(
-                            Intent(this, LoginActivity::class.java)
+                            Intent(this, HomeActivity::class.java)
                         )
                         finish()
                     } else {
