@@ -1,4 +1,78 @@
 # GreenMarket
+---
+
+[ 로그인 , 회원가입 ]
+---
+
+- 이메일, 비밀번호, 이름, 생년월일 모두 입력해야 회원가입이 가능합니다.
+
+![로그인회원가입1](https://github.com/ssarisong/Green-Market/assets/101031116/845aa903-0fbe-4347-bf92-95c82debc841)
+
+
+
+
+[ 홈화면 ]
+---
+
+- 등록된 상품을 확인할 수 있습니다.
+
+![20231202_220520_16](https://github.com/ssarisong/Green-Market/assets/101031116/d5cb97f8-55ab-4207-916b-95f7fed7d215)
+
+
+
+
+[ 상품 검색 필터 ]
+---
+
+- 판매중, 예약중, 판매 완료별로 상품을 확인할 수 있습니다. 
+
+![필터1](https://github.com/ssarisong/Green-Market/assets/101031116/737493e0-c201-4111-9aa8-72b3b6a0e918)
+
+
+
+
+[ 상품 상세 페이지 ]
+---
+
+- 각 상품별 상태 현황을 볼 수 있으며, "채팅하기" 버튼을 통해 판매자와 채팅이 가능합니다. 
+
+![상품2](https://github.com/ssarisong/Green-Market/assets/101031116/f054d0b7-7fc9-4412-a169-900cbfee3422)
+
+
+
+
+[ 상품 등록 ]
+---
+
+![11q상품등록](https://github.com/ssarisong/Green-Market/assets/101031116/8eaffeb3-346a-44c9-b7f6-8d84ea7c5ce0)
+
+
+[상품 수정]
+---
+
+![1게시물수정](https://github.com/ssarisong/Green-Market/assets/101031116/c2082770-90d1-43c0-afc7-c0bbbc1d577c)
+
+
+
+
+[ 채팅 ]
+---
+
+![1채팅](https://github.com/ssarisong/Green-Market/assets/101031116/824a9514-b0c7-4c7a-aadc-fd555ae4a1ad)
+
+
+
+
+[ 마이페이지 ]
+---
+
+- '내가 쓴 글'로 사용자가 작성한 글을 확인할 수 있으며, 해당 페이지에서 상품수정이 가능합니다.
+
+![마이페이지](https://github.com/ssarisong/Green-Market/assets/101031116/8c2b993b-258c-4878-ae2f-be1c1f4650ba)
+
+
+
+
 
 ### 0. Dependencies
 - lifecycle-runtime v2.4.0
