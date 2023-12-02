@@ -157,62 +157,109 @@ class FirestoreProductModel {
      * @param updatedStateCode 수정된 상품의 상태 코드입니다.
      * @param callback 상품 정보 수정 상태 코드(STATUS_CODE)를 반환하는 콜백 함수입니다.
      */
-    fun updateProduct(productId: String, updatedTitle: String, updateImage: String, updatedDetail: String, updatedPrice: Int, updatedStateCode: Int, callback: (Int) -> Unit) {
+    fun updateProduct(productId: String, updatedTitle: String, updateImage: String?, updatedDetail: String, updatedPrice: Int, updatedStateCode: Int, callback: (Int) -> Unit) {
         val productRef = db.collection("Product").document(productId)
         val imageRef = FirebaseStorage.getInstance().reference.child("Product/${productId}")
 
-        imageRef.metadata
-            .addOnSuccessListener {
-                imageRef.delete().addOnSuccessListener {
+        if(updateImage != null) {
+            imageRef.metadata
+                .addOnSuccessListener {
+                    imageRef.delete().addOnSuccessListener {
+                        imageRef.putFile(Uri.parse(updateImage))
+                            .addOnSuccessListener {
+                                imageRef.downloadUrl.addOnSuccessListener { uri ->
+                                    val updatedData = hashMapOf(
+                                        "name" to updatedTitle,
+                                        "img" to uri.toString(),
+                                        "detail" to updatedDetail,
+                                        "price" to updatedPrice,
+                                        "stateCode" to updatedStateCode
+                                    )
+                                    val updatedDataMap: Map<String, Any> = updatedData
+
+                                    productRef.update(updatedDataMap)
+                                        .addOnSuccessListener {
+                                            Log.d(
+                                                "FirestoreProductModel",
+                                                "Storage에 이미지 수정 후 상품 수정 성공"
+                                            )
+                                            callback(StatusCode.SUCCESS)
+                                        }
+                                        .addOnFailureListener { e ->
+                                            Log.w(
+                                                "FirestoreProductModel",
+                                                "Storage에 이미지 수정 후 상품 수정 실패!!! -> ",
+                                                e
+                                            )
+                                            callback(StatusCode.FAILURE)
+                                        }
+                                }
+                            }
+                    }.addOnFailureListener { e ->
+                        Log.w("FirestoreProductModel", "수정전 이미지 Storage에 삭제 실패!!! -> ", e)
+                    }
+                }.addOnFailureListener {
                     imageRef.putFile(Uri.parse(updateImage))
                         .addOnSuccessListener {
                             imageRef.downloadUrl.addOnSuccessListener { uri ->
-                                val updatedData = hashMapOf("name" to updatedTitle, "img" to uri.toString(), "detail" to updatedDetail, "price" to updatedPrice, "stateCode" to updatedStateCode)
+                                val updatedData = hashMapOf(
+                                    "name" to updatedTitle,
+                                    "img" to uri.toString(),
+                                    "detail" to updatedDetail,
+                                    "price" to updatedPrice,
+                                    "stateCode" to updatedStateCode
+                                )
                                 val updatedDataMap: Map<String, Any> = updatedData
 
                                 productRef.update(updatedDataMap)
                                     .addOnSuccessListener {
-                                        Log.d("FirestoreProductModel", "Storage에 이미지 수정 후 상품 수정 성공")
+                                        Log.d("FirestoreProductModel", "Storage에 이미지가 없던 상품 수정 성공")
                                         callback(StatusCode.SUCCESS)
                                     }
-                                    .addOnFailureListener { e->
-                                        Log.w("FirestoreProductModel", "Storage에 이미지 수정 후 상품 수정 실패!!! -> ", e)
+                                    .addOnFailureListener { e ->
+                                        Log.w(
+                                            "FirestoreProductModel",
+                                            "Storage에 이미지가 없던 상품 수정 실패!!! -> ",
+                                            e
+                                        )
                                         callback(StatusCode.FAILURE)
                                     }
                             }
                         }
-                }.addOnFailureListener { e->
-                    Log.w("FirestoreProductModel", "수정전 이미지 Storage에 삭제 실패!!! -> ", e)
                 }
-            }.addOnFailureListener {
-                imageRef.putFile(Uri.parse(updateImage))
-                    .addOnSuccessListener {
-                        imageRef.downloadUrl.addOnSuccessListener { uri ->
-                            val updatedData = hashMapOf("name" to updatedTitle, "img" to uri.toString(), "detail" to updatedDetail, "price" to updatedPrice, "stateCode" to updatedStateCode)
-                            val updatedDataMap: Map<String, Any> = updatedData
+        } else {
+            getProductsById(productId) { SUCCESS_CODE, product ->
+                if(SUCCESS_CODE == StatusCode.SUCCESS){
+                    val updatedData = hashMapOf(
+                        "name" to updatedTitle,
+                        "img" to (product?.img ?: ""),
+                        "detail" to updatedDetail,
+                        "price" to updatedPrice,
+                        "stateCode" to updatedStateCode
+                    )
+                    val updatedDataMap: Map<String, Any> = updatedData
 
-                            productRef.update(updatedDataMap)
-                                .addOnSuccessListener {
-                                    Log.d("FirestoreProductModel", "Storage에 이미지가 없던 상품 수정 성공")
-                                    callback(StatusCode.SUCCESS)
-                                }
-                                .addOnFailureListener { e->
-                                    Log.w("FirestoreProductModel", "Storage에 이미지가 없던 상품 수정 실패!!! -> ", e)
-                                    callback(StatusCode.FAILURE)
-                                }
+                    productRef.update(updatedDataMap)
+                        .addOnSuccessListener {
+                            Log.d(
+                                "FirestoreProductModel",
+                                "이미지 수정이 없던 상품 수정 성공"
+                            )
+                            callback(StatusCode.SUCCESS)
                         }
-                    }
+                        .addOnFailureListener { e ->
+                            Log.w(
+                                "FirestoreProductModel",
+                                "이미지 수정이 없던 상품 수정 실패!!! -> ",
+                                e
+                            )
+                            callback(StatusCode.FAILURE)
+                        }
+                } else {
+                    Log.d("FirestoreProductModel", "이미지 수정이 없던 상품 수정 중 상품 정보 불러오기 실패")
+                    callback(StatusCode.FAILURE)
+                }
             }
-
-        val updatedData = hashMapOf("name" to updatedTitle, "detail" to updatedDetail, "price" to updatedPrice, "stateCode" to updatedStateCode)
-        val updatedDataMap: Map<String, Any> = updatedData
-
-        productRef.update(updatedDataMap)
-            .addOnSuccessListener {
-                callback(StatusCode.SUCCESS)
-            }
-            .addOnFailureListener {
-                callback(StatusCode.FAILURE)
-            }
+        }
     }
 }

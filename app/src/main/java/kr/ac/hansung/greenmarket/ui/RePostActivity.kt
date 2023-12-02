@@ -24,6 +24,7 @@ class RePostActivity : AppCompatActivity() {
     private lateinit var tempState: ProductStates
     private var productUtil: FirebaseProductUtil = FirebaseProductUtil()
     private var selectedImageUri: Uri? = null
+    private var selectedImageString: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +61,7 @@ class RePostActivity : AppCompatActivity() {
                 try {
                     val priceValue = updatedPrice.toInt()
                     if (priceValue >= 0 && priceValue <= Int.MAX_VALUE) {
-                        productUtil.updateProduct(productId = product.productId, updatedTitle = updatedTitle, updateImage = selectedImageUri.toString(), updatedDetail = updatedDetail, updatedPrice = updatedPrice.toInt(), updatedStateCode = updatedStateCode) { STATUS_CODE ->
+                        productUtil.updateProduct(productId = product.productId, updatedTitle = updatedTitle, updateImage = selectedImageString, updatedDetail = updatedDetail, updatedPrice = updatedPrice.toInt(), updatedStateCode = updatedStateCode) { STATUS_CODE ->
                             if (STATUS_CODE == StatusCode.SUCCESS) {
                                 Toast.makeText(this, "상품이 수정되었습니다.", Toast.LENGTH_SHORT).show()
                                 navigateToMyPostList()
@@ -173,6 +174,7 @@ class RePostActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == RePostActivity.IMAGE_PICK_CODE) {
             selectedImageUri = data?.data
+            selectedImageString = selectedImageUri.toString()
             Glide.with(this)
                 .load(selectedImageUri)
                 .into(findViewById(R.id.img_main2))
